@@ -3,7 +3,7 @@ import HomeClient from "./page-client";
 
 export const metadata: Metadata = {
     title: "Home",
-    description: "Welcome to the portfolio of Arjun Rao. Interactive web experiences built with Next.js, Three.js, and GSAP.",
+    description: "Welcome to the portfolio of Arjun Rao. Interactive web experiences built with Next.js, Three.js, and GSAP, Anime.js",
 };
 
 export default function Home() {
