@@ -1,17 +1,11 @@
-"use client";
+import { Metadata } from "next";
+import HomeClient from "./page-client";
 
-import HomeAmbientEnvironment from "./components/home/HomeAmbientEnvironment";
-import HomeStudioShell from "./components/home/HomeStudioShell";
+export const metadata: Metadata = {
+    title: "Home",
+    description: "Welcome to the portfolio of Arjun Rao. Interactive web experiences built with Next.js, Three.js, and GSAP.",
+};
 
 export default function Home() {
-    return (
-        <main
-            className="home-root animate-gradient"
-            data-barba="container"
-            data-barba-namespace="home"
-        >
-            <HomeAmbientEnvironment />
-            <HomeStudioShell />
-        </main>
-    );
+    return <HomeClient />;
 }
