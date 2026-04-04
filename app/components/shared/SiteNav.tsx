@@ -78,7 +78,7 @@ export default function SiteNav() {
     return (
         <nav ref={navRef} className="site-nav" aria-label="Site navigation">
             <Link href="/" className="site-nav-logo">
-                Portfolio
+                ARJUN RAO
             </Link>
 
             {/* Desktop links */}

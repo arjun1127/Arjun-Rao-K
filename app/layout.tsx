@@ -15,25 +15,25 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || "https://arjunrao.dev"),
   title: {
-    default: "ARJUN | Creative Developer",
-    template: "%s | ARJUN",
+    default: "ARJUN RAO | Creative Developer",
+    template: "%s | ARJUN RAO",
   },
-  description: "Creative Developer Portfolio showcasing interactive engineering, backend systems, and AI integration.",
-  keywords: ["Creative Developer", "Frontend Engineer", "Backend Developer", "Three.js", "React", "Next.js", "Portfolio", "Arjun Rao"],
+  description: "Arjun Rao | Creative Developer Portfolio showcasing interactive engineering, backend systems, and AI integration by Arjun Rao K.",
+  keywords: ["Arjun Rao", "Arjun Rao K", "Arjun K Rao", "Vercel Arjun Rao", "Creative Developer", "Frontend Engineer", "Backend Developer", "Three.js", "React", "Next.js", "Portfolio"],
   authors: [{ name: "Arjun Rao" }],
   creator: "Arjun Rao",
   openGraph: {
     type: "website",
     locale: "en_US",
     url: "/",
-    title: "ARJUN | Creative Developer Portfolio",
-    description: "Creative Developer Portfolio showcasing interactive engineering, backend systems, and AI integration.",
-    siteName: "ARJUN Portfolio",
+    title: "ARJUN RAO | Creative Developer Portfolio",
+    description: "Creative Developer Portfolio showcasing interactive engineering, backend systems, and AI integration by Arjun Rao.",
+    siteName: "ARJUN RAO Portfolio",
   },
   twitter: {
     card: "summary_large_image",
-    title: "ARJUN | Creative Developer Portfolio",
-    description: "Creative Developer Portfolio showcasing interactive engineering, backend systems, and AI integration.",
+    title: "ARJUN RAO | Creative Developer Portfolio",
+    description: "Creative Developer Portfolio showcasing interactive engineering, backend systems, and AI integration by Arjun Rao.",
   },
 };
 
