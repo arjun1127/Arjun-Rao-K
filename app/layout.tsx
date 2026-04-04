@@ -60,6 +60,7 @@ export default function RootLayout({
       <body
         className="intel-one-mono-300 antialiased"
       >
+        <meta name="google-site-verification" content="5b8FMYqjuYv6KfdBzeOECG5sVU7eLSYhnTV6uIIOft4" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
