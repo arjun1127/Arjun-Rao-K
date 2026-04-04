@@ -20,3 +20,45 @@ export const homeCopy = {
         { href: "/about", label: "About Me", variant: "secondary" as const },
     ],
 };
+
+/* ── Portal data for the Void Landing ── */
+export type PortalShape = "icosahedron" | "octahedron" | "dodecahedron" | "torus";
+
+export interface PortalInfo {
+    id: string;
+    title: string;
+    tagline: string;
+    href: string;
+    shape: PortalShape;
+}
+
+export const portals: PortalInfo[] = [
+    {
+        id: "about",
+        title: "About",
+        tagline: "Who I am & how I think",
+        href: "/about",
+        shape: "icosahedron",
+    },
+    {
+        id: "projects",
+        title: "Projects",
+        tagline: "Systems I've engineered",
+        href: "/projects",
+        shape: "octahedron",
+    },
+    {
+        id: "skills",
+        title: "Skills",
+        tagline: "Technical DNA & stack",
+        href: "/projects#skills",
+        shape: "dodecahedron",
+    },
+    {
+        id: "contact",
+        title: "Contact",
+        tagline: "Start a conversation",
+        href: "/socials",
+        shape: "torus",
+    },
+];

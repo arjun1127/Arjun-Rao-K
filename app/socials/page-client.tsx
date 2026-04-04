@@ -1,11 +1,11 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useRef, useState, type FormEvent } from "react";
+import { useCallback, useEffect, useMemo, useRef } from "react";
 import { animate, stagger } from "animejs";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import * as THREE from "three";
-import { Code2, Instagram, Play, Send, Youtube } from "lucide-react";
+import { Github, Linkedin, Download } from "lucide-react";
 import SiteNav from "../components/shared/SiteNav";
 import useIsMobile from "../hooks/useIsMobile";
 
@@ -17,41 +17,33 @@ type HubCard = {
     lines: string[];
     cta: string;
     href: string;
-    icon: "instagram" | "youtube" | "store" | "contact";
+    icon: "github" | "linkedin" | "resume";
 };
 
 const hubCards: HubCard[] = [
     {
-        id: "instagram",
-        title: "Instagram",
-        lines: ["Short visual updates", "Design experiments", "UI ideas in motion"],
-        cta: "Visit Instagram",
-        href: "https://www.instagram.com/_code_store/",
-        icon: "instagram",
+        id: "github",
+        title: "GitHub",
+        lines: ["Open source projects", "Code experiments", "Commit history"],
+        cta: "Visit GitHub",
+        href: "https://github.com/arjun1127",
+        icon: "github",
     },
     {
-        id: "youtube",
-        title: "YouTube",
-        lines: ["Technical walkthroughs", "Project breakdowns", "Engineering experiments"],
-        cta: "Watch Channel",
-        href: "https://www.youtube.com/@CODE_STORE",
-        icon: "youtube",
+        id: "linkedin",
+        title: "LinkedIn",
+        lines: ["Professional network", "Career history", "Connections"],
+        cta: "Visit LinkedIn",
+        href: "https://www.linkedin.com/in/arjun-rao-1520a424a/",
+        icon: "linkedin",
     },
     {
-        id: "store",
-        title: "CODE[STORE]",
-        lines: ["Reusable code systems", "Animation templates", "Production-ready patterns"],
-        cta: "Open Store",
-        href: "https://code-store-1.onrender.com/",
-        icon: "store",
-    },
-    {
-        id: "contact",
-        title: "Direct Contact",
-        lines: ["Project inquiry", "Freelance discussion", "Collaboration kickoff"],
-        cta: "Open Form",
-        href: "#contact-form",
-        icon: "contact",
+        id: "resume",
+        title: "Resume",
+        lines: ["Experience details", "Skills overview", "Downloadable copy"],
+        cta: "Download PDF",
+        href: "/Arjun_resume.pdf",
+        icon: "resume",
     },
 ];
 
@@ -60,21 +52,15 @@ export default function Socials() {
     const heroRef = useRef<HTMLDivElement>(null);
     const hubRef = useRef<HTMLDivElement>(null);
     const canvasRef = useRef<HTMLCanvasElement>(null);
-    const contactRef = useRef<HTMLDivElement>(null);
-    const submitBtnRef = useRef<HTMLButtonElement>(null);
-    const successRef = useRef<HTMLDivElement>(null);
     const cardsMapRef = useRef<Map<string, HTMLElement>>(new Map());
 
-    const [isSubmitting, setIsSubmitting] = useState(false);
-    const [isSent, setIsSent] = useState(false);
     const isMobile = useIsMobile();
 
     const moduleNodes = useMemo(
         () =>
             hubCards.map((card) => ({
                 id: card.id,
-                label:
-                    card.id === "store" ? "CODE[STORE]" : card.id === "contact" ? "Contact" : card.title,
+                label: card.title,
             })),
         []
     );
@@ -130,17 +116,6 @@ export default function Socials() {
                     start: "top 80%",
                 },
             });
-
-            gsap.from(".social-form-shell", {
-                y: 80,
-                opacity: 0,
-                duration: 1,
-                ease: "power3.out",
-                scrollTrigger: {
-                    trigger: ".social-form-section",
-                    start: "top 82%",
-                },
-            });
         }, pageRef);
 
         return () => ctx.revert();
@@ -152,27 +127,7 @@ export default function Socials() {
 
     useEffect(() => {
         if (isMobile) return;
-        const playPulse = animate(".play-icon", {
-            scale: [1, 1.15],
-            direction: "alternate",
-            loop: true,
-            duration: 900,
-            ease: "inOutSine",
-        });
-
-        const codeFlow = animate(".code-line", {
-            translateX: [0, 8],
-            direction: "alternate",
-            loop: true,
-            duration: 680,
-            ease: "inOutSine",
-            delay: stagger(110),
-        });
-
-        return () => {
-            playPulse.pause();
-            codeFlow.pause();
-        };
+        // Other specific desktop animations if needed
     }, [isMobile]);
 
     useEffect(() => {
@@ -320,24 +275,6 @@ export default function Socials() {
         });
     }, []);
 
-    const handleInputFocus = useCallback((target: HTMLInputElement | HTMLTextAreaElement) => {
-        animate(target, {
-            borderColor: "#5470eb",
-            boxShadow: "0 0 0 3px rgba(84,112,235,0.18)",
-            duration: 300,
-            ease: "outQuad",
-        });
-    }, []);
-
-    const handleInputBlur = useCallback((target: HTMLInputElement | HTMLTextAreaElement) => {
-        animate(target, {
-            borderColor: "rgba(84,112,235,0.35)",
-            boxShadow: "0 0 0 0 rgba(84,112,235,0)",
-            duration: 280,
-            ease: "outQuad",
-        });
-    }, []);
-
     const jumpToCard = useCallback((cardId: string) => {
         const card = cardsMapRef.current.get(cardId);
         if (!card) return;
@@ -349,39 +286,6 @@ export default function Socials() {
             ease: "outExpo",
         });
     }, []);
-
-    const handleSubmit = useCallback(
-        (event: FormEvent<HTMLFormElement>) => {
-            event.preventDefault();
-            if (isSubmitting) return;
-
-            setIsSubmitting(true);
-            setIsSent(false);
-
-            if (submitBtnRef.current) {
-                animate(submitBtnRef.current, {
-                    scale: [1, 0.92, 1],
-                    duration: 420,
-                    ease: "outExpo",
-                });
-            }
-
-            window.setTimeout(() => {
-                setIsSubmitting(false);
-                setIsSent(true);
-
-                if (successRef.current) {
-                    animate(successRef.current, {
-                        opacity: [0, 1],
-                        translateY: [8, 0],
-                        duration: 420,
-                        ease: "outExpo",
-                    });
-                }
-            }, 1100);
-        },
-        [isSubmitting]
-    );
 
     return (
         <main ref={pageRef} className="social-page">
@@ -432,28 +336,12 @@ export default function Socials() {
                             >
                                 <div className="hub-card-head">
                                     <div className="hub-card-icon">
-                                        {card.icon === "instagram" && <Instagram size={20} />}
-                                        {card.icon === "youtube" && <Youtube size={20} />}
-                                        {card.icon === "store" && <Code2 size={20} />}
-                                        {card.icon === "contact" && <Send size={20} />}
+                                        {card.icon === "github" && <Github size={20} />}
+                                        {card.icon === "linkedin" && <Linkedin size={20} />}
+                                        {card.icon === "resume" && <Download size={20} />}
                                     </div>
                                     <h3>{card.title}</h3>
                                 </div>
-
-                                {card.id === "youtube" && (
-                                    <div className="hub-play-wrap">
-                                        <Play className="play-icon" size={16} />
-                                        <span>Media Feed</span>
-                                    </div>
-                                )}
-
-                                {card.id === "store" && (
-                                    <div className="hub-code-lines">
-                                        <span className="code-line">&lt;code /&gt;</span>
-                                        <span className="code-line">&lt;/&gt;</span>
-                                        <span className="code-line">const motion = true;</span>
-                                    </div>
-                                )}
 
                                 <ul>
                                     {card.lines.map((line) => (
@@ -466,60 +354,6 @@ export default function Socials() {
                                 </a>
                             </article>
                         ))}
-                    </div>
-                </div>
-            </section>
-
-            <section id="contact-form" ref={contactRef} className="social-form-section">
-                <div className="about-glossy-container social-form-shell">
-                    <div className="social-form-head">
-                        <h2>Send a Message</h2>
-                        <p>Tell me about your idea, scope, and timeline.</p>
-                    </div>
-
-                    <form className="social-contact-form" onSubmit={handleSubmit}>
-                        <label>
-                            Name
-                            <input
-                                type="text"
-                                name="name"
-                                required
-                                onFocus={(event) => handleInputFocus(event.currentTarget)}
-                                onBlur={(event) => handleInputBlur(event.currentTarget)}
-                            />
-                        </label>
-                        <label>
-                            Email
-                            <input
-                                type="email"
-                                name="email"
-                                required
-                                onFocus={(event) => handleInputFocus(event.currentTarget)}
-                                onBlur={(event) => handleInputBlur(event.currentTarget)}
-                            />
-                        </label>
-                        <label>
-                            Message
-                            <textarea
-                                name="message"
-                                rows={5}
-                                required
-                                onFocus={(event) => handleInputFocus(event.currentTarget)}
-                                onBlur={(event) => handleInputBlur(event.currentTarget)}
-                            />
-                        </label>
-
-                        <button ref={submitBtnRef} className="social-submit-btn" type="submit">
-                            {isSubmitting ? "Sending..." : "Send"}
-                        </button>
-                    </form>
-
-                    <div
-                        ref={successRef}
-                        className={`social-submit-success ${isSent ? "visible" : ""}`}
-                        aria-live="polite"
-                    >
-                        ✓ Message Sent
                     </div>
                 </div>
             </section>

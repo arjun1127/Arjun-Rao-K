@@ -1,17 +1,20 @@
 "use client";
 
-import HomeAmbientEnvironment from "./components/home/HomeAmbientEnvironment";
-import HomeStudioShell from "./components/home/HomeStudioShell";
+import VoidScene from "./components/home/VoidScene";
+import HomeHeroCopy from "./components/home/HomeHeroCopy";
+import PortalGrid from "./components/home/PortalGrid";
 
-export default function Home() {
+export default function HomeClient() {
     return (
-        <main
-            className="home-root animate-gradient"
-            data-barba="container"
-            data-barba-namespace="home"
-        >
-            <HomeAmbientEnvironment />
-            <HomeStudioShell />
+        <main className="void-landing" data-barba="container" data-barba-namespace="home">
+            {/* Three.js void background */}
+            <VoidScene />
+
+            {/* Foreground content */}
+            <div className="void-content">
+                <HomeHeroCopy />
+                <PortalGrid />
+            </div>
         </main>
     );
 }
