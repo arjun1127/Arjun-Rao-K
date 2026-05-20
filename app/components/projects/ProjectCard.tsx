@@ -138,8 +138,6 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
             </header>
 
             <div ref={detailsRef} className="project-details">
-                <div className={`project-preview cat-${project.category}`} />
-
                 <p className="project-description">{project.description}</p>
 
                 <div className="project-expanded-tech">

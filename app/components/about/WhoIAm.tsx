@@ -137,11 +137,11 @@ export default function WhoIAm() {
         <div ref={sectionRef} className="who-section">
             <div ref={textRef} className="who-text">
                 <h2 className="text-3xl font-semibold text-black">
-                    Hi, I&apos;m Arjun Rao.
+                    Hello !,
                 </h2>
 
                 <p className="mt-4 text-gray-700">
-                    Currently balancing between learning Japanese and building software systems.
+                    I'm currently balancing between learning Japanese and building software systems.
                 </p>
 
                 <p className="mt-4 text-gray-700">
