@@ -4,33 +4,34 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useLang } from "../../i18n/LangContext";
+import { translations, t } from "../../i18n/translations";
 
 gsap.registerPlugin(ScrollTrigger);
-
-const hobbies = [
-    {
-        title: "Badminton",
-        tag: "COMPETITIVE",
-        description:
-            "As a Hobby I play Badminton almost everyday, It is the best way to refresh my state and let me have a good start to morning , sometimes I participate in local tournamnets for fun!!",
-        images: ["/hobby2.png", "/hobby1.png"],
-        layout: "duo" as const,
-    },
-    {
-        title: "Bike Rides",
-        tag: "ADVENTURE",
-        description:
-            "I like to ride vechicles not just bikes, Cars also but on open roads!! , I go on random small trips solo or with freinds for refreshments .",
-        images: ["/hobby3.png"],
-        layout: "solo" as const,
-    },
-];
 
 export default function Hobbies() {
     const sectionRef = useRef<HTMLElement>(null);
     const titleRef = useRef<HTMLHeadingElement>(null);
     const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
     const [hasAnimated, setHasAnimated] = useState(false);
+    const { lang } = useLang();
+
+    const hobbies = [
+        {
+            title: t(translations.about.hobbyBadminton.title, lang),
+            tag: t(translations.about.hobbyBadminton.tag, lang),
+            description: t(translations.about.hobbyBadminton.desc, lang),
+            images: ["/hobby2.png", "/hobby1.png"],
+            layout: "duo" as const,
+        },
+        {
+            title: t(translations.about.hobbyBikeRides.title, lang),
+            tag: t(translations.about.hobbyBikeRides.tag, lang),
+            description: t(translations.about.hobbyBikeRides.desc, lang),
+            images: ["/hobby3.png"],
+            layout: "solo" as const,
+        },
+    ];
 
     useEffect(() => {
         const section = sectionRef.current;
@@ -84,9 +85,9 @@ export default function Hobbies() {
             <div className="hobbies-container">
                 {/* Section header */}
                 <div className="hobbies-header">
-                    <span className="hobbies-kicker">OFF THE SCREEN</span>
+                    <span className="hobbies-kicker">{t(translations.about.hobbiesKicker, lang)}</span>
                     <h2 ref={titleRef} className="hobbies-title">
-                        Things I Love
+                        {t(translations.about.hobbiesTitle, lang)}
                     </h2>
                 </div>
 

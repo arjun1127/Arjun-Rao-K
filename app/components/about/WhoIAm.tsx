@@ -6,6 +6,8 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import * as THREE from "three";
 import { Link } from "lucide-react";
 import useIsMobile from "../../hooks/useIsMobile";
+import { useLang } from "../../i18n/LangContext";
+import { translations, t } from "../../i18n/translations";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -14,6 +16,7 @@ export default function WhoIAm() {
     const textRef = useRef<HTMLDivElement>(null);
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const isMobile = useIsMobile();
+    const { lang } = useLang();
 
     // Three.js wireframe sphere
     useEffect(() => {
@@ -137,21 +140,19 @@ export default function WhoIAm() {
         <div ref={sectionRef} className="who-section">
             <div ref={textRef} className="who-text">
                 <h2 className="text-3xl font-semibold text-black">
-                    Hello !,
+                    {t(translations.about.whoTitle, lang)}
                 </h2>
 
                 <p className="mt-4 text-gray-700">
-                    I'm currently balancing between learning Japanese and building software systems.
+                    {t(translations.about.whoDesc1, lang)}
                 </p>
 
                 <p className="mt-4 text-gray-700">
-                    I plan to offer services in software development, focusing on advanced 3D
-                    websites, portfolio experiences, end-to-end web development, and AI
-                    integrations.
+                    {t(translations.about.whoDesc2, lang)}
                 </p>
 
                 <p className="mt-4 text-gray-700">
-                    For now, explore some of my landing page code snippets.
+                    {t(translations.about.whoDesc3, lang)}
                 </p>
 
                 <a
@@ -160,7 +161,7 @@ export default function WhoIAm() {
                     rel="noopener noreferrer"
                     className="btn-primary"
                 >
-                    View Code Snippets
+                    {t(translations.about.viewCodeSnippets, lang)}
                 </a>
             </div>
 

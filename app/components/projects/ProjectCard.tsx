@@ -3,6 +3,8 @@
 import { useCallback, useRef, useState } from "react";
 import { animate, stagger } from "animejs";
 import type { Project } from "./projectsData";
+import { useLang } from "../../i18n/LangContext";
+import { translations, t } from "../../i18n/translations";
 
 interface ProjectCardProps {
     project: Project;
@@ -15,6 +17,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
     const arrowRef = useRef<HTMLSpanElement>(null);
     const [expanded, setExpanded] = useState(false);
     const architecture = project.architecture ?? [];
+    const { lang } = useLang();
 
     const indexStr = String(index + 1).padStart(2, "0");
 
@@ -130,7 +133,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
                 </div>
 
                 <button type="button" className="inspect-btn" onClick={handleToggle}>
-                    inspect
+                    {t(translations.projects.inspect, lang).toLowerCase()}
                     <span ref={arrowRef} className="inspect-arrow">
 
                     </span>
@@ -169,7 +172,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
                             target="_blank"
                             rel="noopener noreferrer"
                         >
-                            GitHub
+                            {t(translations.projects.github, lang)}
                         </a>
                     )}
                     {project.live && (
@@ -179,7 +182,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
                             target="_blank"
                             rel="noopener noreferrer"
                         >
-                            Live
+                            {t(translations.projects.live, lang)}
                         </a>
                     )}
                 </div>

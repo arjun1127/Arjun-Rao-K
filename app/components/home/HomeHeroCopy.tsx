@@ -8,8 +8,8 @@ import {
 } from "react";
 import { animate, stagger } from "animejs";
 import { Github, Linkedin, Download } from "lucide-react";
-import { homeCopy, homeTitle, homeTitleJP } from "./homeData";
-
+import { useLang } from "../../i18n/LangContext";
+import { translations, t } from "../../i18n/translations";
 /* ── timing ── */
 const CYCLE_INTERVAL = 5000;
 const CHAR_OUT_DUR = 420;
@@ -29,7 +29,13 @@ export default function HomeHeroCopy() {
     const descRef = useRef<HTMLParagraphElement>(null);
     const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
     const isJPRef = useRef(false);
-    const [titleChars, setTitleChars] = useState(() => splitToChars(homeTitle));
+    const { lang, toggleLang } = useLang();
+
+
+    const enTitle = t(translations.home.title, "en");
+    const jaTitle = t(translations.home.title, "ja");
+
+    const [titleChars, setTitleChars] = useState(() => splitToChars(enTitle));
 
     /* ── character hover effect ── */
     useEffect(() => {
@@ -89,7 +95,7 @@ export default function HomeHeroCopy() {
             onComplete: () => {
                 const next = !isJPRef.current;
                 isJPRef.current = next;
-                setTitleChars(splitToChars(next ? homeTitleJP : homeTitle));
+                setTitleChars(splitToChars(next ? jaTitle : enTitle));
             },
         });
 
@@ -99,7 +105,9 @@ export default function HomeHeroCopy() {
             duration: DESC_OUT_DUR,
             ease: "inQuad",
             onComplete: () => {
-                desc.textContent = isJPRef.current ? homeCopy.descriptionJP : homeCopy.description;
+                desc.textContent = isJPRef.current
+                    ? t(translations.home.description, "ja")
+                    : t(translations.home.description, "en");
                 animate(desc, {
                     opacity: [0, 1],
                     translateY: [14, 0],
@@ -108,7 +116,7 @@ export default function HomeHeroCopy() {
                 });
             },
         });
-    }, []);
+    }, [enTitle, jaTitle]);
 
     /* ── Animate chars in after React re-renders ── */
     useEffect(() => {
@@ -151,7 +159,7 @@ export default function HomeHeroCopy() {
             {/* Scan-line overlay */}
             <div className="scan-line-overlay" aria-hidden="true" />
 
-            <p className="void-kicker">{homeCopy.kicker}</p>
+            <p className="void-kicker">{t(translations.home.kicker, lang)}</p>
 
             <h1 ref={titleRef} className="void-title sekuya-regular">
                 {titleChars.map((char, i) => (
@@ -161,26 +169,42 @@ export default function HomeHeroCopy() {
                 ))}
             </h1>
 
-            <h2 className="void-subtitle">{homeCopy.subtitle}</h2>
+            <h2 className="void-subtitle">{t(translations.home.subtitle, lang)}</h2>
 
             <p ref={descRef} className="void-description">
-                {homeCopy.description}
+                {t(translations.home.description, lang)}
             </p>
 
             <div className="hero-social-links" style={{ display: 'flex', gap: '1.5rem', marginTop: '2rem', justifyContent: 'center', opacity: 0.8 }}>
                 <a href="https://github.com/arjun1127" target="_blank" rel="noreferrer" className="hero-social-link" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'inherit', textDecoration: 'none', transition: 'opacity 0.2s' }}>
                     <Github size={20} />
-                    <span>GitHub</span>
+                    <span>{t(translations.home.github, lang)}</span>
                 </a>
                 <a href="https://www.linkedin.com/in/arjun-rao-1520a424a/" target="_blank" rel="noreferrer" className="hero-social-link" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'inherit', textDecoration: 'none', transition: 'opacity 0.2s' }}>
                     <Linkedin size={20} />
-                    <span>LinkedIn</span>
+                    <span>{t(translations.home.linkedin, lang)}</span>
                 </a>
                 <a href="/Arjun_resume.pdf" target="_blank" rel="noreferrer" className="hero-social-link" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'inherit', textDecoration: 'none', transition: 'opacity 0.2s' }}>
                     <Download size={20} />
-                    <span>Resume</span>
+                    <span>{t(translations.home.resume, lang)}</span>
                 </a>
             </div>
+            <button className="lang-toggle-btn lang-toggle-mobile" onClick={() => toggleLang()}>
+                {lang === "en" ? (
+                    <>
+                        <span className="lang-toggle-option is-active">EN</span>
+                        <span className="lang-toggle-divider">/</span>
+                        <span className="lang-toggle-option">日本</span>
+                    </>
+                ) : (
+                    <>
+                        <span className="lang-toggle-option">EN</span>
+                        <span className="lang-toggle-divider">/</span>
+                        <span className="lang-toggle-option is-active">日本</span>
+                    </>
+                )}
+            </button>
+            <h4>{lang == "ja" ? (<p className="jap-mistake">日本語がまちがっていたらすみません。</p>) : (<p></p>)}</h4>
         </section>
     );
 }

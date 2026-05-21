@@ -8,6 +8,8 @@ import CategoryChips from "./CategoryChips";
 import ProjectCard from "./ProjectCard";
 import { categories, projects } from "./projectsData";
 import { getSkillLabel, projectMatchesSkill } from "./skillSystemData";
+import { useLang } from "../../i18n/LangContext";
+import { translations, t } from "../../i18n/translations";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -35,6 +37,7 @@ function getFilteredIds(categoryId: string, selectedSkill: string | null): numbe
 export default function ProjectsExplorer({ selectedSkill, hoveredSkill }: ProjectsExplorerProps) {
     const [activeCategory, setActiveCategory] = useState("all");
     const [visibleIds, setVisibleIds] = useState<number[]>(() => getFilteredIds("all", selectedSkill));
+    const { lang } = useLang();
 
     const sectionRef = useRef<HTMLElement>(null);
     const gridRef = useRef<HTMLDivElement>(null);
@@ -48,21 +51,29 @@ export default function ProjectsExplorer({ selectedSkill, hoveredSkill }: Projec
     const selectedSkillRef = useRef<string | null>(selectedSkill);
     const visibleIdsRef = useRef<number[]>(getFilteredIds("all", selectedSkill));
 
+    const filterCategoriesLocalized = useMemo(() => [
+        { id: "all", label: lang === "ja" ? "すべて" : "All" },
+        ...categories.map((c) => {
+            const tr = translations.projects.categories[c.id];
+            return { id: c.id, label: tr ? t(tr, lang) : c.label };
+        }),
+    ], [lang]);
+
     const visibleProjects = useMemo(() => {
         const visibleIdSet = new Set(visibleIds);
         return projects.filter((project) => visibleIdSet.has(project.id));
     }, [visibleIds]);
 
     const activeCategoryLabel = useMemo(() => {
-        const active = filterCategories.find((category) => category.id === activeCategory);
-        return active?.label ?? "All";
-    }, [activeCategory]);
+        const active = filterCategoriesLocalized.find((category) => category.id === activeCategory);
+        return active?.label ?? (lang === "ja" ? "すべて" : "All");
+    }, [activeCategory, filterCategoriesLocalized, lang]);
 
     const focusLabel = useMemo(() => {
-        if (selectedSkill) return `Skill Focus: ${getSkillLabel(selectedSkill)}`;
-        if (activeCategory !== "all") return `Category Focus: ${activeCategoryLabel}`;
-        return "All Systems";
-    }, [activeCategory, activeCategoryLabel, selectedSkill]);
+        if (selectedSkill) return `${lang === "ja" ? "スキルフォーカス" : "Skill Focus"}: ${getSkillLabel(selectedSkill)}`;
+        if (activeCategory !== "all") return `${lang === "ja" ? "カテゴリフォーカス" : "Category Focus"}: ${activeCategoryLabel}`;
+        return lang === "ja" ? "すべてのシステム" : "All Systems";
+    }, [activeCategory, activeCategoryLabel, selectedSkill, lang]);
 
     const categoryCounts = useMemo(() => {
         const counts: Record<string, number> = {
@@ -344,7 +355,7 @@ export default function ProjectsExplorer({ selectedSkill, hoveredSkill }: Projec
         <section ref={sectionRef} className="about-dark-section projects-explorer-section">
             <div className="projects-explorer-shell">
                 <div className="projects-explorer-header">
-                    <h2>Projects Explorer</h2>
+                    <h2>{lang === "ja" ? "プロジェクトエクスプローラー" : "Projects Explorer"}</h2>
                     <p ref={focusRef}>{focusLabel}</p>
                 </div>
 
@@ -353,7 +364,7 @@ export default function ProjectsExplorer({ selectedSkill, hoveredSkill }: Projec
                     onChange={(nextCategory) =>
                         void runFilterTransition(nextCategory, selectedSkillRef.current)
                     }
-                    categories={filterCategories}
+                    categories={filterCategoriesLocalized}
                     counts={categoryCounts}
                 />
 

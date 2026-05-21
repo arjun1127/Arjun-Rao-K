@@ -3,17 +3,17 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useLang } from "../../i18n/LangContext";
+import { translations, t } from "../../i18n/translations";
 
 gsap.registerPlugin(ScrollTrigger);
-
-const explorations = [
-    "Agentic AI use cases, open claw and its applications",
-    "Web systems with 3D, sound, and interaction",
-];
 
 export default function FutureVision() {
     const sectionRef = useRef<HTMLDivElement>(null);
     const itemsRef = useRef<HTMLDivElement>(null);
+    const { lang } = useLang();
+
+    const explorations = translations.about.explorations.map((item) => t(item, lang));
 
     useEffect(() => {
         if (!sectionRef.current || !itemsRef.current) return;
@@ -44,7 +44,7 @@ export default function FutureVision() {
 
     return (
         <div ref={sectionRef} className="future-section">
-            <h2>What I&apos;m Exploring</h2>
+            <h2>{t(translations.about.futureTitle, lang)}</h2>
             <div ref={itemsRef} className="future-items">
                 {explorations.map((item, i) => (
                     <div key={i} className="future-item">

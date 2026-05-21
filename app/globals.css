@@ -94,6 +94,11 @@
     align-items: center;
   }
 
+  .hero-social-links {
+    color: white;
+    font-weight: 500;
+  }
+
   .void-kicker {
     margin: 0;
     color: rgba(255, 255, 255, 0.4);
@@ -140,6 +145,11 @@
     font-size: clamp(0.9rem, 1.6vw, 1.05rem);
     line-height: 1.7;
     text-align: center;
+  }
+
+  .jap-mistake {
+    color: white;
+    margin-top: 2rem;
   }
 
   /* ── Portal Grid ── */
@@ -243,7 +253,6 @@
   .portal-card:hover .portal-arrow {
     border-color: rgba(255, 255, 255, 0.5);
     color: #ffffff;
-    transform: translateX(4px);
   }
 
   /* ── Shared Site Nav (dark pages) ── */
@@ -307,6 +316,50 @@
   .site-nav-active .site-nav-underline {
     transform: scaleX(1);
     opacity: 1;
+  }
+
+  /* ── Language Toggle ── */
+  .lang-toggle-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    border: 1px solid rgba(0, 37, 148, 0.572);
+    border-radius: 80px;
+    padding: 5px 12px;
+    cursor: pointer;
+    transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+    font-family: inherit;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.55);
+    white-space: nowrap;
+  }
+
+  .lang-toggle-btn:hover {
+    border-color: rgba(1, 39, 209, 0.7);
+    transform: translateY(-1px);
+  }
+
+  .lang-toggle-divider {
+    color: rgba(255, 255, 255, 0.2);
+    font-weight: 400;
+  }
+
+  .lang-toggle-option {
+    transition: color 0.24s ease, opacity 0.24s ease;
+    opacity: 0.5;
+  }
+
+  .lang-toggle-option.is-active {
+    color: #5470eb;
+    opacity: 1;
+  }
+
+  .lang-toggle-mobile {
+    margin-top: 12px;
+    align-self: center;
   }
 
   @media (max-width: 768px) {
@@ -2195,6 +2248,7 @@
     .projects-explorer-section {
       padding-left: 20px;
       padding-right: 20px;
+      transition: translateY(-42px);
     }
 
     .projects-hero-content,
@@ -2236,17 +2290,26 @@
     background: #0c0c0c;
   }
 
+  .social-hero-hub-wrap {
+    position: relative;
+    overflow: hidden;
+  }
+
   .social-hero {
-    min-height: 52vh;
+    min-height: 51vh;
     padding: 0 80px 80px;
     display: flex;
     align-items: flex-end;
+    position: relative;
+    z-index: 1;
+    pointer-events: none;
   }
 
   .social-hero-inner {
     width: 1444px;
     max-width: calc(100vw - 120px);
     margin: 0 auto;
+    pointer-events: auto;
   }
 
   .social-kicker {
@@ -2276,6 +2339,9 @@
 
   .social-hub-section {
     padding: 0 80px 70px;
+    position: relative;
+    z-index: 1;
+    pointer-events: none;
   }
 
   .social-hub-shell {
@@ -2284,14 +2350,7 @@
     margin: 0 auto;
     padding: 30px 30px 34px;
     border-radius: 28px;
-    border: 1px solid rgba(255, 255, 255, 0.14);
-    background:
-      radial-gradient(120% 90% at 50% -12%, rgba(84, 112, 235, 0.26) 0%, rgba(84, 112, 235, 0.06) 45%, transparent 72%),
-      linear-gradient(150deg, rgba(18, 18, 22, 0.98) 0%, rgba(10, 10, 12, 0.98) 100%);
-    box-shadow:
-      0 30px 90px rgba(0, 0, 0, 0.46),
-      0 0 62px rgba(84, 112, 235, 0.16),
-      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(0, 4, 116, 0.398);
     position: relative;
     overflow: hidden;
   }
@@ -2311,13 +2370,12 @@
   }
 
   .hub-scene-wrap {
-    height: 240px;
-    border-radius: 18px;
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    background:
-      radial-gradient(circle at 50% 8%, rgba(84, 112, 235, 0.2) 0%, rgba(12, 12, 18, 0.92) 52%, rgba(8, 8, 12, 0.98) 100%);
-    position: relative;
-    overflow: hidden;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
   }
 
   .hub-canvas {
@@ -2326,67 +2384,19 @@
     height: 100%;
   }
 
-  .hub-node-map {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-  }
 
-  .hub-node {
-    position: absolute;
-    border: 1px solid rgba(84, 112, 235, 0.75);
-    background: rgba(84, 112, 235, 0.18);
-    color: #fff;
-    border-radius: 999px;
-    padding: 8px 14px;
-    font-size: 0.72rem;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    font-weight: 700;
-    cursor: pointer;
-    pointer-events: auto;
-    box-shadow: 0 0 24px rgba(84, 112, 235, 0.32);
-    transition: transform 0.25s ease, background 0.25s ease;
-  }
-
-  .hub-node:hover {
-    transform: translateY(-4px) scale(1.02);
-    background: rgba(84, 112, 235, 0.28);
-  }
-
-  .hub-node-instagram {
-    top: 16%;
-    left: 17%;
-  }
-
-  .hub-node-youtube {
-    top: 25%;
-    right: 19%;
-  }
-
-  .hub-node-store {
-    bottom: 22%;
-    left: 24%;
-  }
-
-  .hub-node-contact {
-    bottom: 14%;
-    right: 24%;
-  }
 
   .hub-grid {
     margin-top: 22px;
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 18px;
+    pointer-events: auto;
   }
 
   .hub-card {
     border-radius: 18px;
-    border: 1px solid rgba(255, 255, 255, 0.16);
-    background:
-      linear-gradient(160deg, rgba(255, 255, 255, 0.09) 0%, rgba(255, 255, 255, 0.03) 100%);
-    backdrop-filter: blur(8px);
+    border: 1px solid rgba(0, 2, 114, 0.508);
     padding: 20px 20px 18px;
     transform-origin: center center;
   }
@@ -2405,7 +2415,6 @@
     align-items: center;
     justify-content: center;
     color: #fff;
-    background: rgba(84, 112, 235, 0.25);
     border: 1px solid rgba(84, 112, 235, 0.5);
   }
 
@@ -2442,14 +2451,15 @@
     font-weight: 700;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    border: 1px solid rgba(84, 112, 235, 0.6);
-    background: rgba(84, 112, 235, 0.3);
+    border: 1px solid rgba(171, 174, 187, 0.475);
     padding: 10px 14px;
     transition: background 0.24s ease;
+    box-shadow:
+      0 0 30px rgba(89, 109, 197, 0.35);
   }
 
   .hub-link-btn:hover {
-    background: rgba(84, 112, 235, 0.45);
+    background: rgba(19, 0, 167, 0.45);
   }
 
   .hub-play-wrap {
@@ -2644,14 +2654,9 @@
       padding: 18px 16px 20px;
     }
 
-    .hub-scene-wrap {
-      height: 200px;
-    }
+    /* .hub-scene-wrap height removed for mobile since it covers full height */
 
-    .hub-node {
-      padding: 7px 10px;
-      font-size: 0.66rem;
-    }
+
 
     .hub-grid {
       grid-template-columns: 1fr;
@@ -2691,14 +2696,9 @@
       padding: 14px 12px 16px;
     }
 
-    .hub-scene-wrap {
-      height: 170px;
-    }
+    /* .hub-scene-wrap height removed */
 
-    .hub-node {
-      font-size: 0.6rem;
-      padding: 6px 8px;
-    }
+
 
     .hub-card {
       padding: 16px 14px 14px;

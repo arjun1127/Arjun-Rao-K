@@ -3,11 +3,14 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useLang } from "../../i18n/LangContext";
+import { translations, t } from "../../i18n/translations";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function ConnectCTA() {
     const sectionRef = useRef<HTMLElement>(null);
+    const { lang } = useLang();
 
     useEffect(() => {
         if (!sectionRef.current) return;
@@ -36,9 +39,9 @@ export default function ConnectCTA() {
 
     return (
         <section ref={sectionRef} className="about-dark-section cta-section">
-            <h2>Interested in building something together?</h2>
+            <h2>{t(translations.about.ctaTitle, lang)}</h2>
             <a href="mailto:arjunkrao2004@gmail.com" className="glow-button">
-                Let&apos;s Talk
+                {t(translations.about.ctaButton, lang)}
             </a>
         </section>
     );

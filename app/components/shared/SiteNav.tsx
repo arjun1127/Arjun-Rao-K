@@ -4,19 +4,18 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import useIsMobile from "../../hooks/useIsMobile";
+import { useLang } from "../../i18n/LangContext";
+import { translations, t } from "../../i18n/translations";
 
-const navLinks = [
-    { href: "/", label: "Home" },
-    { href: "/about", label: "About" },
-    { href: "/projects", label: "Projects" },
-    { href: "/socials", label: "Socials" },
-];
+const navKeys = ["home", "about", "projects", "socials"] as const;
+const navHrefs = ["/", "/about", "/projects", "/socials"] as const;
 
 export default function SiteNav() {
     const pathname = usePathname();
     const navRef = useRef<HTMLElement>(null);
     const isMobile = useIsMobile();
     const [menuOpen, setMenuOpen] = useState(false);
+    const { lang, toggleLang } = useLang();
 
     // Close menu on route change
     useEffect(() => {
@@ -78,25 +77,40 @@ export default function SiteNav() {
     return (
         <nav ref={navRef} className="site-nav" aria-label="Site navigation">
             <Link href="/" className="site-nav-logo">
-                ARJUN RAO
+                {t(translations.nav.logo, lang)}
             </Link>
 
             {/* Desktop links */}
             <ul className="site-nav-list site-nav-desktop">
-                {navLinks.map((link) => {
-                    const isActive = pathname === link.href;
+                {navKeys.map((key, i) => {
+                    const href = navHrefs[i];
+                    const isActive = pathname === href;
                     return (
-                        <li key={link.href}>
+                        <li key={href}>
                             <Link
-                                href={link.href}
+                                href={href}
                                 className={`site-nav-link${isActive ? " site-nav-active" : ""}`}
                             >
-                                <span>{link.label}</span>
+                                <span>{t(translations.nav[key], lang)}</span>
                                 <span className="site-nav-underline" />
                             </Link>
                         </li>
                     );
                 })}
+
+                {/* Language toggle */}
+                <li>
+                    <button
+                        type="button"
+                        className="lang-toggle-btn"
+                        onClick={toggleLang}
+                        aria-label={`Switch to ${lang === "en" ? "Japanese" : "English"}`}
+                    >
+                        <span className={`lang-toggle-option ${lang === "en" ? "is-active" : ""}`}>EN</span>
+                        <span className="lang-toggle-divider">/</span>
+                        <span className={`lang-toggle-option ${lang === "ja" ? "is-active" : ""}`}>日本</span>
+                    </button>
+                </li>
             </ul>
 
             {/* Mobile hamburger */}
@@ -113,19 +127,32 @@ export default function SiteNav() {
 
             {/* Mobile panel */}
             <div className={`mobile-menu-panel${menuOpen ? " is-open" : ""}`}>
-                {navLinks.map((link) => {
-                    const isActive = pathname === link.href;
+                {navKeys.map((key, i) => {
+                    const href = navHrefs[i];
+                    const isActive = pathname === href;
                     return (
                         <Link
-                            key={link.href}
-                            href={link.href}
+                            key={href}
+                            href={href}
                             className={`mobile-menu-link${isActive ? " mobile-menu-active" : ""}`}
                             onClick={() => setMenuOpen(false)}
                         >
-                            {link.label}
+                            {t(translations.nav[key], lang)}
                         </Link>
                     );
                 })}
+
+                {/* Mobile language toggle */}
+                <button
+                    type="button"
+                    className="lang-toggle-btn lang-toggle-mobile"
+                    onClick={toggleLang}
+                    aria-label={`Switch to ${lang === "en" ? "Japanese" : "English"}`}
+                >
+                    <span className={`lang-toggle-option ${lang === "en" ? "is-active" : ""}`}>EN</span>
+                    <span className="lang-toggle-divider">/</span>
+                    <span className={`lang-toggle-option ${lang === "ja" ? "is-active" : ""}`}>日本</span>
+                </button>
             </div>
         </nav>
     );

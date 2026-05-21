@@ -5,9 +5,11 @@ import { animate, stagger } from "animejs";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import * as THREE from "three";
-import { Code2, Instagram, Play, Send, Youtube } from "lucide-react";
+import { Code2, Github, Play, Send } from "lucide-react";
 import SiteNav from "../components/shared/SiteNav";
 import useIsMobile from "../hooks/useIsMobile";
+import { useLang } from "../i18n/LangContext";
+import { translations, t } from "../i18n/translations";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -17,25 +19,18 @@ type HubCard = {
     lines: string[];
     cta: string;
     href: string;
-    icon: "instagram" | "youtube" | "store" | "contact";
+    icon: "github" | "store" | "contact";
 };
 
 const hubCards: HubCard[] = [
+
     {
-        id: "instagram",
-        title: "Instagram",
-        lines: ["Short visual updates", "Design experiments", "UI ideas in motion"],
-        cta: "Visit Instagram",
-        href: "https://www.instagram.com/_code_store/",
-        icon: "instagram",
-    },
-    {
-        id: "youtube",
-        title: "YouTube",
-        lines: ["Technical walkthroughs", "Project breakdowns", "Engineering experiments"],
-        cta: "Watch Channel",
-        href: "https://www.youtube.com/@CODE_STORE",
-        icon: "youtube",
+        id: "github",
+        title: "github",
+        lines: ["Open-source contributions", "Project repositories", "Code experiments"],
+        cta: "View Profile",
+        href: "https://github.com/arjun1127",
+        icon: "github",
     },
     {
         id: "store",
@@ -68,16 +63,36 @@ export default function Socials() {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSent, setIsSent] = useState(false);
     const isMobile = useIsMobile();
+    const { lang } = useLang();
 
-    const moduleNodes = useMemo(
-        () =>
-            hubCards.map((card) => ({
-                id: card.id,
-                label:
-                    card.id === "store" ? "CODE[STORE]" : card.id === "contact" ? "Contact" : card.title,
-            })),
-        []
-    );
+    const localizedCards = useMemo(() => [
+        {
+            id: "github",
+            title: t(translations.socials.githubTitle, lang),
+            lines: translations.socials.githubLines.map((l) => t(l, lang)),
+            cta: t(translations.socials.githubCta, lang),
+            href: "https://github.com/arjun1127",
+            icon: "github" as const,
+        },
+        {
+            id: "store",
+            title: t(translations.socials.storeTitle, lang),
+            lines: translations.socials.storeLines.map((l) => t(l, lang)),
+            cta: t(translations.socials.storeCta, lang),
+            href: "https://code-store-1.onrender.com/",
+            icon: "store" as const,
+        },
+        {
+            id: "contact",
+            title: t(translations.socials.contactTitle, lang),
+            lines: translations.socials.contactLines.map((l) => t(l, lang)),
+            cta: t(translations.socials.contactCta, lang),
+            href: "#contact-form",
+            icon: "contact" as const,
+        },
+    ], [lang]);
+
+
 
     const animateCardEnter = useCallback(() => {
         const cards = Array.from(cardsMapRef.current.values());
@@ -107,17 +122,7 @@ export default function Socials() {
                 { y: 0, opacity: 1, duration: 0.9, ease: "power3.out", delay: 0.2 }
             );
 
-            gsap.from(".hub-node", {
-                y: 24,
-                opacity: 0,
-                duration: 0.8,
-                stagger: 0.1,
-                ease: "power3.out",
-                scrollTrigger: {
-                    trigger: ".hub-node-map",
-                    start: "top 86%",
-                },
-            });
+
 
             gsap.from(".hub-card", {
                 y: 80,
@@ -183,26 +188,26 @@ export default function Socials() {
 
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(
-            52,
+            62,
             canvas.clientWidth / Math.max(canvas.clientHeight, 1),
             0.1,
             100
         );
-        camera.position.z = 6.1;
+        camera.position.z = 5.7;
 
         const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
         renderer.setSize(canvas.clientWidth, canvas.clientHeight);
 
-        const particleCount = 280;
+        const particleCount = 500;
         const particlePositions = new Float32Array(particleCount * 3);
         const particleVelocity = new Float32Array(particleCount);
 
         for (let i = 0; i < particleCount; i += 1) {
             const i3 = i * 3;
-            particlePositions[i3] = (Math.random() - 0.5) * 8.4;
-            particlePositions[i3 + 1] = (Math.random() - 0.5) * 4.6;
-            particlePositions[i3 + 2] = (Math.random() - 0.5) * 3.5;
+            particlePositions[i3] = (Math.random() - 0.5) * 18.0;
+            particlePositions[i3 + 1] = (Math.random() - 0.5) * 12.0;
+            particlePositions[i3 + 2] = (Math.random() - 0.5) * 6.0;
             particleVelocity[i] = 0.002 + Math.random() * 0.005;
         }
 
@@ -219,17 +224,17 @@ export default function Socials() {
         const particles = new THREE.Points(particleGeometry, particleMaterial);
         scene.add(particles);
 
-        const lineSegmentsCount = 34;
+        const lineSegmentsCount = 70;
         const linePositions = new Float32Array(lineSegmentsCount * 6);
         for (let i = 0; i < lineSegmentsCount; i += 1) {
             const i6 = i * 6;
-            linePositions[i6] = (Math.random() - 0.5) * 8;
-            linePositions[i6 + 1] = (Math.random() - 0.5) * 4.2;
-            linePositions[i6 + 2] = (Math.random() - 0.5) * 2.8;
+            linePositions[i6] = (Math.random() - 0.5) * 18.0;
+            linePositions[i6 + 1] = (Math.random() - 0.5) * 12.0;
+            linePositions[i6 + 2] = (Math.random() - 0.5) * 6.0;
 
-            linePositions[i6 + 3] = linePositions[i6] + (Math.random() - 0.5) * 1.3;
-            linePositions[i6 + 4] = linePositions[i6 + 1] + (Math.random() - 0.5) * 1.1;
-            linePositions[i6 + 5] = linePositions[i6 + 2] + (Math.random() - 0.5) * 1.1;
+            linePositions[i6 + 3] = linePositions[i6] + (Math.random() - 0.5) * 1.8;
+            linePositions[i6 + 4] = linePositions[i6 + 1] + (Math.random() - 0.5) * 1.5;
+            linePositions[i6 + 5] = linePositions[i6 + 2] + (Math.random() - 0.5) * 1.5;
         }
 
         const linesGeometry = new THREE.BufferGeometry();
@@ -253,8 +258,8 @@ export default function Socials() {
                 particlePositions[i3 + 1] += particleVelocity[i];
                 particlePositions[i3] += Math.sin(t + i * 0.1) * 0.0005;
 
-                if (particlePositions[i3 + 1] > 2.5) {
-                    particlePositions[i3 + 1] = -2.5;
+                if (particlePositions[i3 + 1] > 6.0) {
+                    particlePositions[i3 + 1] = -6.0;
                 }
             }
 
@@ -386,100 +391,78 @@ export default function Socials() {
     return (
         <main ref={pageRef} className="social-page">
             <SiteNav />
-            <section ref={heroRef} className="social-hero">
-                <div className="social-hero-inner">
-                    <p className="social-kicker">Communication Hub</p>
-                    <h1 className="connect-title">CONNECT</h1>
-                    <p className="connect-subtitle">Choose how you want to reach me.</p>
+            <div className="social-hero-hub-wrap">
+                <div className="hub-scene-wrap">
+                    <canvas ref={canvasRef} className="hub-canvas" />
                 </div>
-            </section>
 
-            <section ref={hubRef} className="social-hub-section">
-                <div className="social-hub-shell">
-                    <h2>Communication Hub</h2>
-                    <p>Pick your preferred channel, then continue the conversation.</p>
+                <section ref={heroRef} className="social-hero">
+                    <div className="social-hero-inner">
+                        <h1 className="connect-title">{t(translations.socials.connectTitle, lang)}</h1>
+                        <p className="connect-subtitle">{t(translations.socials.connectSubtitle, lang)}</p>
+                    </div>
+                </section>
 
-                    <div className="hub-scene-wrap">
-                        <canvas ref={canvasRef} className="hub-canvas" />
-                        <div className="hub-node-map">
-                            {moduleNodes.map((node) => (
-                                <button
-                                    key={node.id}
-                                    type="button"
-                                    className={`hub-node hub-node-${node.id}`}
-                                    onClick={() => jumpToCard(node.id)}
+                <section ref={hubRef} className="social-hub-section">
+                    <div className="social-hub-shell">
+                        <div className="hub-grid">
+                            {localizedCards.map((card) => (
+                                <article
+                                    key={card.id}
+                                    ref={(element) => {
+                                        if (element) {
+                                            cardsMapRef.current.set(card.id, element);
+                                            return;
+                                        }
+                                        cardsMapRef.current.delete(card.id);
+                                    }}
+                                    className={`hub-card hub-card-${card.id}`}
+                                    onMouseEnter={(event) => handleCardEnter(event.currentTarget)}
+                                    onMouseLeave={(event) => handleCardLeave(event.currentTarget)}
                                 >
-                                    <span>{node.label}</span>
-                                </button>
+                                    <div className="hub-card-head">
+                                        <div className="hub-card-icon">
+                                            {card.icon === "github" && <Github size={20} />}
+                                            {card.icon === "store" && <Code2 size={20} />}
+                                            {card.icon === "contact" && <Send size={20} />}
+                                        </div>
+                                        <h3>{card.title}</h3>
+                                    </div>
+
+                                    {card.id === "store" && (
+                                        <div className="hub-code-lines">
+                                            <span className="code-line">&lt;code /&gt;</span>
+                                            <span className="code-line">&lt;/&gt;</span>
+                                            <span className="code-line">const motion = true;</span>
+                                        </div>
+                                    )}
+
+                                    <ul>
+                                        {card.lines.map((line, idx) => (
+                                            <li key={line || idx}>{line}</li>
+                                        ))}
+                                    </ul>
+
+                                    <a href={card.href} className="hub-link-btn">
+                                        {card.cta}
+                                    </a>
+                                </article>
                             ))}
                         </div>
                     </div>
-
-                    <div className="hub-grid">
-                        {hubCards.map((card) => (
-                            <article
-                                key={card.id}
-                                ref={(element) => {
-                                    if (element) {
-                                        cardsMapRef.current.set(card.id, element);
-                                        return;
-                                    }
-                                    cardsMapRef.current.delete(card.id);
-                                }}
-                                className={`hub-card hub-card-${card.id}`}
-                                onMouseEnter={(event) => handleCardEnter(event.currentTarget)}
-                                onMouseLeave={(event) => handleCardLeave(event.currentTarget)}
-                            >
-                                <div className="hub-card-head">
-                                    <div className="hub-card-icon">
-                                        {card.icon === "instagram" && <Instagram size={20} />}
-                                        {card.icon === "youtube" && <Youtube size={20} />}
-                                        {card.icon === "store" && <Code2 size={20} />}
-                                        {card.icon === "contact" && <Send size={20} />}
-                                    </div>
-                                    <h3>{card.title}</h3>
-                                </div>
-
-                                {card.id === "youtube" && (
-                                    <div className="hub-play-wrap">
-                                        <Play className="play-icon" size={16} />
-                                        <span>Media Feed</span>
-                                    </div>
-                                )}
-
-                                {card.id === "store" && (
-                                    <div className="hub-code-lines">
-                                        <span className="code-line">&lt;code /&gt;</span>
-                                        <span className="code-line">&lt;/&gt;</span>
-                                        <span className="code-line">const motion = true;</span>
-                                    </div>
-                                )}
-
-                                <ul>
-                                    {card.lines.map((line) => (
-                                        <li key={line}>{line}</li>
-                                    ))}
-                                </ul>
-
-                                <a href={card.href} className="hub-link-btn">
-                                    {card.cta}
-                                </a>
-                            </article>
-                        ))}
-                    </div>
-                </div>
-            </section>
+                </section>
+            </div>
 
             <section id="contact-form" ref={contactRef} className="social-form-section">
                 <div className="about-glossy-container social-form-shell">
                     <div className="social-form-head">
-                        <h2>Send a Message</h2>
-                        <p>Tell me about your idea, scope, and timeline.</p>
+                        <h2>{t(translations.socials.sendMessage, lang)}</h2>
+                        <p>{t(translations.socials.formDesc, lang)}</p>
                     </div>
 
                     <form className="social-contact-form" onSubmit={handleSubmit}>
                         <label>
-                            Name
+                            {t(translations.socials.nameLabel, lang)}
                             <input
                                 type="text"
                                 name="name"
@@ -489,7 +472,7 @@ export default function Socials() {
                             />
                         </label>
                         <label>
-                            Email
+                            {t(translations.socials.emailLabel, lang)}
                             <input
                                 type="email"
                                 name="email"
@@ -499,7 +482,7 @@ export default function Socials() {
                             />
                         </label>
                         <label>
-                            Message
+                            {t(translations.socials.messageLabel, lang)}
                             <textarea
                                 name="message"
                                 rows={5}
@@ -510,7 +493,7 @@ export default function Socials() {
                         </label>
 
                         <button ref={submitBtnRef} className="social-submit-btn" type="submit">
-                            {isSubmitting ? "Sending..." : "Send"}
+                            {isSubmitting ? t(translations.socials.sending, lang) : t(translations.socials.send, lang)}
                         </button>
                     </form>
 
@@ -519,16 +502,14 @@ export default function Socials() {
                         className={`social-submit-success ${isSent ? "visible" : ""}`}
                         aria-live="polite"
                     >
-                        ✓ Message Sent
+                        {t(translations.socials.messageSent, lang)}
                     </div>
                 </div>
             </section>
 
             <section className="social-closing-cta">
-                <h2>Let us build something with intent.</h2>
-                <a href="/projects" className="social-closing-link">
-                    Explore Projects
-                </a>
+                <h2>{t(translations.socials.closingCta, lang)}</h2>
+
             </section>
         </main>
     );

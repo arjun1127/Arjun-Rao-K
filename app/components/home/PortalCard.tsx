@@ -6,6 +6,8 @@ import * as THREE from "three";
 import { ArrowRight } from "lucide-react";
 import useIsMobile from "../../hooks/useIsMobile";
 import type { PortalInfo, PortalShape } from "./homeData";
+import { useLang } from "../../i18n/LangContext";
+import { translations, t } from "../../i18n/translations";
 
 interface PortalCardProps {
     portal: PortalInfo;
@@ -37,6 +39,11 @@ export default function PortalCard({ portal, index, onNavigate }: PortalCardProp
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const innerRef = useRef<HTMLDivElement>(null);
     const isMobile = useIsMobile();
+    const { lang } = useLang();
+
+    const portalTranslation = translations.portals[portal.id as keyof typeof translations.portals];
+    const displayTitle = portalTranslation ? t(portalTranslation.title, lang) : portal.title;
+    const displayTagline = portalTranslation ? t(portalTranslation.tagline, lang) : portal.tagline;
 
     /* ── Embedded wireframe scene ── */
     useEffect(() => {
@@ -177,10 +184,10 @@ export default function PortalCard({ portal, index, onNavigate }: PortalCardProp
                 {/* Label */}
                 <div className="portal-label-row">
                     <span className="portal-index">{String(index + 1).padStart(2, "0")}</span>
-                    <h3 className="portal-title">{portal.title}</h3>
+                    <h3 className="portal-title">{displayTitle}</h3>
                 </div>
 
-                <p className="portal-tagline">{portal.tagline}</p>
+                <p className="portal-tagline">{displayTagline}</p>
 
                 {/* Arrow */}
                 <div className="portal-arrow">

@@ -2,35 +2,20 @@
 
 import { useEffect, useRef, useState } from "react";
 import { animate, stagger } from "animejs";
-
-const milestones = [
-    {
-        year: "2022",
-        label: "Started Programming and Engineering in ECE",
-        desc: "Discovered the world of code began with JAVA, problem-solving, and building small projects.",
-    },
-    {
-        year: "2024",
-        label: "Full-Stack & AI",
-        desc: "Built end-to-end applications with React, Node, databases, and built ML systems for college projects on Electronics and Communication Engineering.",
-    },
-    {
-        year: "2025-2026",
-        label: "Interactive Web Engineering",
-        desc: "Exploring immersive web experiences Three.js, GSAP, animations, and real-time interactive interfaces.",
-    },
-    {
-        year: "2026-2027",
-        label: "Freelance and Future",
-        desc: "Plans of doing freelancing and in next year will be reloacting for Tokyo for work.",
-    }
-
-];
+import { useLang } from "../../i18n/LangContext";
+import { translations, t } from "../../i18n/translations";
 
 export default function JourneyTimeline() {
     const sectionRef = useRef<HTMLDivElement>(null);
     const trackRef = useRef<HTMLDivElement>(null);
     const [hasAnimated, setHasAnimated] = useState(false);
+    const { lang } = useLang();
+
+    const milestones = translations.about.milestones.map((m) => ({
+        year: m.year,
+        label: t(m.label, lang),
+        desc: t(m.desc, lang),
+    }));
 
     useEffect(() => {
         const section = sectionRef.current;
@@ -72,7 +57,7 @@ export default function JourneyTimeline() {
 
     return (
         <div ref={sectionRef} className="journey-section">
-            <h2>Developer Journey</h2>
+            <h2>{t(translations.about.journeyTitle, lang)}</h2>
             <div className="timeline-container">
                 <div ref={trackRef} className="timeline-track" />
                 {milestones.map((m, i) => (

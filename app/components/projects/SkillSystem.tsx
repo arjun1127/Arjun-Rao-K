@@ -12,6 +12,8 @@ import {
     type SkillNode,
 } from "./skillSystemData";
 import useIsMobile from "../../hooks/useIsMobile";
+import { useLang } from "../../i18n/LangContext";
+import { translations, t } from "../../i18n/translations";
 
 interface SkillSystemProps {
     selectedSkill: string | null;
@@ -49,6 +51,7 @@ export default function SkillSystem({
     const hoveredSkillRef = useRef<string | null>(null);
     const rafIdRef = useRef(0);
     const isMobile = useIsMobile();
+    const { lang } = useLang();
 
     const [hoveredSkill, setHoveredSkill] = useState<string | null>(null);
 
@@ -485,8 +488,8 @@ export default function SkillSystem({
             <section ref={sectionRef} className="about-dark-section skill-system-section">
                 <div className="skill-system-shell">
                     <div className="skill-system-header">
-                        <h2>Skill System</h2>
-                        <p>Tap any skill to filter projects below.</p>
+                        <h2>{t(translations.projects.skillSystem, lang)}</h2>
+                        <p>{t(translations.projects.skillSystemDescMobile, lang)}</p>
                     </div>
 
                     <div className="mobile-skill-system">
@@ -528,9 +531,9 @@ export default function SkillSystem({
 
                     <div className="skill-system-footer">
                         <div className="skill-selection-state">
-                            <span>Selected Skill</span>
+                            <span>{t(translations.projects.selectedSkill, lang)}</span>
                             <strong>
-                                {selectedSkill ? getSkillLabel(selectedSkill) : "All Skills"}
+                                {selectedSkill ? getSkillLabel(selectedSkill) : t(translations.projects.allSkills, lang)}
                             </strong>
                             {selectedSkill && (
                                 <button
@@ -538,7 +541,7 @@ export default function SkillSystem({
                                     className="skill-clear-btn"
                                     onClick={() => onSelectSkill(null)}
                                 >
-                                    Clear
+                                    {t(translations.projects.clear, lang)}
                                 </button>
                             )}
                         </div>
@@ -553,8 +556,8 @@ export default function SkillSystem({
         <section ref={sectionRef} className="about-dark-section skill-system-section">
             <div className="skill-system-shell">
                 <div className="skill-system-header">
-                    <h2>Skill System</h2>
-                    <p>Skills map directly to project evidence. Click any node to filter modules.</p>
+                    <h2>{t(translations.projects.skillSystem, lang)}</h2>
+                    <p>{t(translations.projects.skillSystemDesc, lang)}</p>
                 </div>
 
                 <div className="skill-system-canvas-wrap">
@@ -589,15 +592,15 @@ export default function SkillSystem({
                     </div>
 
                     <div className="skill-selection-state">
-                        <span>Selected Skill</span>
-                        <strong>{selectedSkill ? getSkillLabel(selectedSkill) : "All Skills"}</strong>
+                        <span>{t(translations.projects.selectedSkill, lang)}</span>
+                        <strong>{selectedSkill ? getSkillLabel(selectedSkill) : t(translations.projects.allSkills, lang)}</strong>
                         {selectedSkill && (
                             <button
                                 type="button"
                                 className="skill-clear-btn"
                                 onClick={() => onSelectSkill(null)}
                             >
-                                Clear
+                                {t(translations.projects.clear, lang)}
                             </button>
                         )}
                     </div>

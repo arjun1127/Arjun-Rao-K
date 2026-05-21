@@ -6,6 +6,8 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import * as THREE from "three";
 import useIsMobile from "../../hooks/useIsMobile";
+import { useLang } from "../../i18n/LangContext";
+import { translations, t } from "../../i18n/translations";
 
 export default function AboutHero() {
     const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -20,6 +22,7 @@ export default function AboutHero() {
     const scrollRef = useRef<HTMLDivElement>(null);
 
     const isMobile = useIsMobile();
+    const { lang } = useLang();
 
     // THREE PARTICLES
     useEffect(() => {
@@ -221,20 +224,19 @@ export default function AboutHero() {
                             ref={titleRef}
                             className="hero-main-title"
                         >
-                            Arjun Rao
+                            {t(translations.about.heroTitle, lang)}
                         </h1>
 
                         <p
                             ref={subtitleRef}
                             className="hero-description"
                         >
-                            ECE Graduate experienced in building
-                            AI based Web Applications and Machine Learning systems
+                            {t(translations.about.heroDesc, lang)}
 
                             <br />
                             <br />
 
-                            Currently exploring 3D web engineering, Blender, and Smart ways to improve one's Workflow and Systems.
+                            {t(translations.about.heroDesc2, lang)}
                         </p>
 
                         <div
@@ -253,14 +255,14 @@ export default function AboutHero() {
                                     href="/projects"
                                     className="hero-primary-btn"
                                 >
-                                    View Projects
+                                    {t(translations.about.viewProjects, lang)}
                                 </Link>
 
                                 <Link
                                     href="/contact"
                                     className="hero-secondary-btn"
                                 >
-                                    Contact
+                                    {t(translations.about.contact, lang)}
                                 </Link>
                             </div>
                         </div>
@@ -289,22 +291,17 @@ export default function AboutHero() {
                             className="hero-floating-card"
                         >
                             <p className="floating-label">
-                                STATUS
+                                {t(translations.about.status, lang)}
                             </p>
 
                             <p className="floating-text">
-                                2027 •  TOKYO 🇯🇵
+                                {t(translations.about.statusText, lang)}
                             </p>
                         </div>
                     </div>
                 </div>
 
-                <div
-                    ref={scrollRef}
-                    className="scroll-indicator"
-                >
-                    Scroll to explore
-                </div>
+
             </div>
         </section>
     );

@@ -10,7 +10,7 @@ export const homeTitleJP = "アルジュン・ラオ";
 
 export const homeCopy = {
     kicker: "Interactive Engineering Studio",
-    subtitle: "Interactive Systems Engineer",
+    subtitle: "Software Engineer",
     description:
         "Building immersive digital systems with animation-first design and engineering logic.",
     descriptionJP:
@@ -35,28 +35,28 @@ export interface PortalInfo {
 export const portals: PortalInfo[] = [
     {
         id: "about",
-        title: "About",
-        tagline: "Who I am & how I think",
+        title: "ARJUN.RAO",
+        tagline: "About me and My Life-style",
         href: "/about",
         shape: "icosahedron",
     },
     {
         id: "projects",
-        title: "Projects",
+        title: "PROJECTS",
         tagline: "Systems I've engineered",
         href: "/projects",
         shape: "octahedron",
     },
     {
         id: "skills",
-        title: "Skills",
+        title: "SKILLS",
         tagline: "Technical DNA & stack",
         href: "/projects#skills",
         shape: "dodecahedron",
     },
     {
         id: "contact",
-        title: "Contact",
+        title: "CONTACT",
         tagline: "Start a conversation",
         href: "/socials",
         shape: "torus",
