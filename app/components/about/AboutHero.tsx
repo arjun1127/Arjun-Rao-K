@@ -259,7 +259,7 @@ export default function AboutHero() {
                                 </Link>
 
                                 <Link
-                                    href="/contact"
+                                    href="/socials"
                                     className="hero-secondary-btn"
                                 >
                                     {t(translations.about.contact, lang)}

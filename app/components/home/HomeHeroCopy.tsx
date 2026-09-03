@@ -17,8 +17,8 @@ const CHAR_IN_DUR = 520;
 const DESC_OUT_DUR = 600;
 const DESC_IN_DUR = 700;
 
-/* ── B&W theme palette for character hover colors ── */
-const THEME_COLORS = ["#ffffff", "#999999", "#cccccc", "#666666", "#e0e0e0"];
+/* ── Temple Night theme palette for character hover colors ── */
+const THEME_COLORS = ["#ffffff", "#f6ad55", "#60a5fa", "#f472b6", "#34d399", "#e2e8f0"];
 
 function splitToChars(text: string) {
     return text.split("").map((ch) => (ch === " " ? "\u00A0" : ch));
