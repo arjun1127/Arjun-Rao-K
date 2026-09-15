@@ -64,6 +64,7 @@ export const translations = {
         scrollToExplore: { en: "Scroll to explore", ja: "スクロールして探索" },
 
         /* Who I Am */
+        whoKicker: { en: "WHO I AM", ja: "私について" },
         whoTitle: { en: "Hello !,", ja: "こんにちは！" },
         whoDesc1: {
             en: "I'm currently balancing between learning Japanese and building software systems.",
@@ -77,7 +78,7 @@ export const translations = {
             en: "For now, explore some of my landing page code snippets.",
             ja: "今のところ、私のランディングページのコードスニペットをご覧ください。",
         },
-        viewCodeSnippets: { en: "View Code Snippets", ja: "コードスニペットを見る" },
+        viewCodeSnippets: { en: "My Works", ja: "私の作品" },
 
         /* Hobbies */
         hobbiesKicker: { en: "OFF THE SCREEN", ja: "画面の外で" },
@@ -152,26 +153,24 @@ export const translations = {
     projects: {
         heroTitle: { en: "Projects", ja: "プロジェクト" },
         heroSubtitle: {
-            en: "Some of projects that I was involved in during my college",
-            ja: "大学時代に関わったプロジェクトの一部",
+            en: "Selected systems, interfaces and experiments.",
+            ja: "厳選されたシステム、インターフェース、実験。",
         },
-        skillSystem: { en: "Skill System", ja: "スキルシステム" },
-        skillSystemDesc: {
-            en: "Skills map directly to project evidence. Click any node to filter modules.",
-            ja: "スキルはプロジェクトの証拠に直接マッピングされます。ノードをクリックしてモジュールをフィルタリング。",
+        heroLine: {
+            en: "SELECTED PROJECTS / 2024 — 2026",
+            ja: "セレクテッドプロジェクト / 2024 — 2026",
         },
-        skillSystemDescMobile: {
-            en: "Tap any skill to filter projects below.",
-            ja: "スキルをタップして下のプロジェクトをフィルタリング。",
-        },
-        selectedSkill: { en: "Selected Skill", ja: "選択したスキル" },
-        allSkills: { en: "All Skills", ja: "すべてのスキル" },
-        clear: { en: "Clear", ja: "クリア" },
+        viewWork: { en: "VIEW WORK", ja: "作品を見る" },
+        status: { en: "STATUS", ja: "ステータス" },
+        type: { en: "TYPE", ja: "タイプ" },
+        year: { en: "YEAR", ja: "年" },
+        openProject: { en: "OPEN PROJECT", ja: "プロジェクトを開く" },
+        viewSource: { en: "VIEW SOURCE", ja: "ソースを見る" },
         categories: {
-            "intelligent-systems": { en: "Intelligent Systems", ja: "インテリジェントシステム" },
-            "interactive-interfaces": { en: "Interactive Interfaces", ja: "インタラクティブインターフェース" },
-            "server-architectures": { en: "Server Architectures", ja: "サーバーアーキテクチャ" },
-            "integrated-systems": { en: "Integrated Systems", ja: "統合システム" },
+            "AI/ML": { en: "AI/ML", ja: "AI/ML" },
+            "Front-end": { en: "Front-end", ja: "フロントエンド" },
+            "Back-end": { en: "Back-end", ja: "バックエンド" },
+            "Full-stack": { en: "Full-stack", ja: "フルスタック" },
         } as Record<string, { en: string; ja: string }>,
         inspect: { en: "INSPECT", ja: "検査" },
         github: { en: "GITHUB", ja: "GITHUB" },

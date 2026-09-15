@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import * as THREE from "three";
-import { Link } from "lucide-react";
+import Link from "next/link";
 import useIsMobile from "../../hooks/useIsMobile";
 import { useLang } from "../../i18n/LangContext";
 import { translations, t } from "../../i18n/translations";
@@ -155,14 +155,12 @@ export default function WhoIAm() {
                     {t(translations.about.whoDesc3, lang)}
                 </p>
 
-                <a
-                    href="https://code-store-1.onrender.com/"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                <Link
+                    href="/projects"
                     className="btn-primary"
                 >
                     {t(translations.about.viewCodeSnippets, lang)}
-                </a>
+                </Link>
             </div>
 
             <div className="who-visual">

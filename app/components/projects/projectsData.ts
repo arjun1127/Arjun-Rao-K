@@ -1,141 +1,110 @@
+export type LocalizedString = {
+    en: string;
+    ja: string;
+};
+
 export interface Project {
     id: number;
     title: string;
-    category: string;
+    shortTitle: string[];
+    category: LocalizedString | string;
     tech: string[];
-    description: string;
+    description: LocalizedString | string;
+    type: LocalizedString | string;
+    status: string;
+    year: string;
+    image: string;
     architecture?: string[];
     github?: string;
     live?: string;
 }
 
 export const projects: Project[] = [
-
-    // ── Intelligent Systems ──
-
     {
         id: 1,
-        title: "Sign Language Recognition",
-        category: "intelligent-systems",
-        tech: ["Python", "TensorFlow", "MediaPipe", "OpenCV", "LSTM"],
-        description:
-            "A deep learning based sign language recognition system using LSTM networks and MediaPipe Holistic tracking. The system captures hand and body landmarks and classifies gestures in real-time using sequence-based neural networks.",
-        architecture: ["MediaPipe Holistic", "Landmark Extraction", "LSTM Model", "Gesture Prediction"],
-        github: "https://github.com/arjun1127/SLR-deep-learning.git",
+        title: "Yoga-Portfolio",
+        shortTitle: ["SHUBHA", "YOGA"],
+        category: { en: "Front-end", ja: "フロントエンド" },
+        tech: ["Next.js", "Tailwind CSS", "three.js"],
+        description: {
+            en: "A gig that I did for a yoga instructor, where I made a portfolio website for her.",
+            ja: "ヨガインストラクターのために制作したポートフォリオウェブサイト。"
+        },
+        type: { en: "experience", ja: "エクスペリエンス" },
+        status: "active",
+        year: "2025",
+        image: "/yoga-portfolio.png",
+        live: "https://toyourselfyoga.com/"
     },
-
     {
         id: 2,
-        title: "Drug Repurposing using Graph Neural Networks",
-        category: "intelligent-systems",
-        tech: ["Python", "PyTorch", "Graph Neural Networks", "AutoDock Vina"],
-        description:
-            "A Graph Neural Network system built on the PrimeKG biomedical knowledge graph to identify potential drug repurposing candidates. Predictions are validated using molecular docking simulations with AutoDock Vina.",
-        architecture: ["PrimeKG Graph", "GNN Model", "Prediction Engine", "Docking Validation"],
-        github: "https://github.com/arjun1127/drug_repurpose.git",
+        title: "Kotoba.Score",
+        shortTitle: ["KOTOBA", ".SCORE"],
+        category: { en: "Full-stack", ja: "フルスタック" },
+        tech: ["Next.js", "PostgreSQL", "Tailwind CSS", "three.js"],
+        description: {
+            en: "A platform for Japanese Language Learners.",
+            ja: "日本語学習者のための対話型学習プラットフォーム。"
+        },
+        type: { en: "platform", ja: "プラットフォーム" },
+        status: "active",
+        year: "2026",
+        image: "/kotoba-score.png",
+        live: "https://kotoba-score.vercel.app/"
     },
-
     {
         id: 3,
-        title: "HEALTHIER – AI Lifestyle Assistant",
-        category: "intelligent-systems",
-        tech: ["React", "Node.js", "Gemini", "Hugging Face", "Computer Vision"],
-        description:
-            "A personal AI health assistant that analyzes images, text inputs, and daily activity to generate insights about food, expenses, sleep, productivity, and health patterns. Integrates vision models, LLMs, and machine learning to deliver personalized recommendations.",
-        architecture: ["React Frontend", "Node API Gateway", "AI Services", "Data Analytics"],
-        github: "https://github.com/arjun1127/HEALTHIER.git",
+        title: "Anime Suisen",
+        shortTitle: ["ANIME", "SUISEN"],
+        category: { en: "Front-end", ja: "フロントエンド" },
+        tech: ["Next.js", "Tailwind CSS"],
+        description: {
+            en: "A personal project that I did for an anime community.",
+            ja: "アニメコミュニティ向けに作成した個人プロジェクト。"
+        },
+        type: { en: "product", ja: "プロダクト" },
+        status: "active",
+        year: "2025",
+        image: "/anime_suisen.png",
+        live: "https://anime-suisen.vercel.app/"
     },
-
-
-    // ── Interactive Interfaces ──
-
     {
         id: 4,
-        title: "FutureMart – 3D Animated Web Experience",
-        category: "interactive-interfaces",
-        tech: ["Three.js", "React", "Tailwind", "JavaScript"],
-        description:
-            "A futuristic 3D animated shopping experience built with Three.js and React. The site integrates animated 3D models with modern UI design and advanced Tailwind-based motion interactions.",
-        architecture: ["React UI", "Three.js Scene", "Animation Engine", "Tailwind Motion"],
-        github: "https://github.com/arjun1127/FutureMart.git",
+        title: "Arjun Finance",
+        shortTitle: ["Finance", "System"],
+        category: { en: "Full stack", ja: "フルスタック" },
+        tech: ["Next", "Gemini", "PostgreSQL", "Electron"],
+        description: {
+            en: "It's a personal private desktop finance management app using LLM. This is a Linux OS desktop application running locally using Electron.",
+            ja: "LLMを活用した個人向けのプライベートデスクトップ資産管理アプリ。Electronを使用してLinuxでローカル動作。"
+        },
+        type: { en: "ai-system", ja: "AIシステム" },
+        status: "active",
+        year: "2026",
+        image: "/finance.png",
+        live: "https://github.com/arjun1127/finance-"
     },
-
     {
         id: 5,
-        title: "Metaball Physics Landing Page",
-        category: "interactive-interfaces",
-        tech: ["Three.js", "GSAP", "GLSL", "Shaders"],
-        description:
-            "A visually experimental landing page exploring metaball physics and fluid dynamics using custom GLSL shaders. GSAP is used to orchestrate animation timing and visual transitions.",
-        architecture: ["Three.js Renderer", "GLSL Shaders", "Metaball Simulation", "GSAP Animation"],
-        live: "https://code-store-1.onrender.com/tutorials/threeGsap",
-    },
-
-    {
-        id: 6,
-        title: "3D Scroll Animation Experience",
-        category: "interactive-interfaces",
-        tech: ["Three.js", "GSAP", "ScrollTrigger", "GLSL"],
-        description:
-            "A 3D scroll-driven animation system where objects move and transform based on user scroll position. Built using Three.js and GSAP ScrollTrigger to synchronize camera and scene transitions.",
-        architecture: ["Three.js Scene", "ScrollTrigger Controller", "Camera Animation", "Shader Effects"],
-        live: "https://code-store-1.onrender.com/tutorials/3D%20Scroll",
-    },
-
-
-    // ── Server Architectures ──
-
-    {
-        id: 7,
-        title: "CPU-Aware Node.js Load Balancer",
-        category: "server-architectures",
-        tech: ["Node.js", "JavaScript"],
-        description:
-            "A custom Node.js load balancer that intelligently distributes incoming requests across backend servers based on real-time CPU usage. Includes a live dashboard displaying request logs, response times, and system metrics.",
-        architecture: ["Request Router", "CPU Monitor", "Backend Pool", "Metrics Dashboard"],
-        github: "https://github.com/arjun1127/Load-balancer-js",
-    },
-
-
-    // ── Integrated Systems ──
-
-    {
-        id: 8,
-        title: "CODE[STORE] – 3D Code Marketplace",
-        category: "integrated-systems",
-        tech: ["React", "Three.js", "GSAP", "Node.js"],
-        description:
-            "A personal developer platform designed to sell advanced Three.js and GSAP-based web animation systems. Includes tutorials, reusable code snippets, and interactive landing page components.",
-        architecture: ["React Frontend", "Code Library", "Tutorial Pages", "Animation Systems"],
-        live: "https://code-store-1.onrender.com/",
-    },
-
-    {
-        id: 9,
-        title: "Kanji Kousa – AI Assisted Kanji Learning Platform",
-        category: "integrated-systems",
-        tech: ["React", "AI Chat", "Quiz Engine", "Flashcards"],
-        description:
-            "A full-featured kanji learning platform that combines flashcards, quizzes, AI chat assistance, and learning analytics to help users master JLPT kanji effectively.",
-        architecture: ["React Frontend", "AI Tutor", "Quiz Engine", "User Analytics"],
-        live: "https://kanji-kousa-1.onrender.com/",
-    },
-
-    {
-        id: 10,
-        title: "Appoint Vaidhya – Hospital Appointment System",
-        category: "integrated-systems",
-        tech: ["Next.js", "Tailwind", "Appwrite"],
-        description:
-            "A modern healthcare appointment booking platform where patients can schedule doctor visits while hospital administrators manage bookings, approvals, and rescheduling.",
-        architecture: ["Next.js Frontend", "Appwrite Backend", "Appointment Manager", "Admin Panel"],
-        live: "https://hospital-online-appointment.vercel.app/",
-    },
+        title: "Drug Repurposing",
+        shortTitle: ["DRUG", "REPURPOSE"],
+        category: { en: "AI/ML", ja: "AI/ML" },
+        tech: ["Python", "PyTorch", "NumPy", "FastAPI", "React"],
+        description: {
+            en: "Repurposing Drug means finding new useful ways to use already existing drugs for the treatment of various diseases, helping researchers find new drugs for diseases that don't have proper medication.",
+            ja: "既存の医薬品の新しい有効な適応症を発見し、適切な治療法がない疾病の研究・創薬を支援するAI/創薬システム。"
+        },
+        type: { en: "ai-system", ja: "AIシステム" },
+        status: "experiment",
+        year: "2024",
+        image: "/drug_repurpose.png",
+        live: "https://github.com/arjun1127/drug_repurpose"
+    }
 ];
 
 export const categories = [
-    { id: "intelligent-systems", label: "Intelligent Systems" },
-    { id: "interactive-interfaces", label: "Interactive Interfaces" },
-    { id: "server-architectures", label: "Server Architectures" },
-    { id: "integrated-systems", label: "Integrated Systems" },
+    { id: "AI/ML", label: { en: "AI/ML", ja: "AI/ML" } },
+    { id: "Front-end", label: { en: "Front-end", ja: "フロントエンド" } },
+    { id: "Back-end", label: { en: "Back-end", ja: "バックエンド" } },
+    { id: "Full-stack", label: { en: "Full-stack", ja: "フルスタック" } },
 ];
