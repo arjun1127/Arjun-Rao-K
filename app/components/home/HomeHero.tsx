@@ -12,6 +12,8 @@ import { ArrowRight, User } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
+import { useIframeButtonCustomization } from "../../hooks/useIframeButtonCustomization";
+
 // Lazy-load ThreeUI components so the bundle stays lean until needed
 const PredictiveArcCanvas = lazy(() =>
     import("@designcodeio/threeui").then((mod) => ({
@@ -32,11 +34,18 @@ export default function HomeHero() {
     const kickerRef = useRef<HTMLDivElement>(null);
     const previewTextRef = useRef<HTMLParagraphElement>(null);
     const cardRef = useRef<HTMLDivElement>(null);
+    const plasmaBtnRef = useRef<HTMLDivElement>(null);
     const imageWrapRef = useRef<HTMLDivElement>(null);
     const floatingCardRef = useRef<HTMLDivElement>(null);
     const scrollRef = useRef<HTMLDivElement>(null);
 
     const { lang } = useLang();
+
+    useIframeButtonCustomization({
+        containerRef: plasmaBtnRef,
+        text: t(translations.home.aboutMe, lang),
+        lang,
+    });
 
     useEffect(() => {
         const ctx = gsap.context(() => {
@@ -160,6 +169,7 @@ export default function HomeHero() {
                         <div ref={cardRef} className="">
                             <div className="hero-buttons">
                                 <div
+                                    ref={plasmaBtnRef}
                                     onClick={() => router.push("/about")}
                                     className="home-hero-plasma-wrap"
                                     role="button"

@@ -9,7 +9,7 @@ import { projects } from "../projects/projectsData";
 import { useLang } from "../../i18n/LangContext";
 import { translations, t } from "../../i18n/translations";
 import { ExternalLink, ArrowRight, FolderKanban } from "lucide-react";
-import { useIframeButtonText } from "../../hooks/useIframeButtonText";
+import { useIframeButtonCustomization } from "../../hooks/useIframeButtonCustomization";
 
 const ShaderButtons = lazy(() =>
     import("@designcodeio/threeui").then((mod) => ({ default: mod.ShaderButtons }))
@@ -31,7 +31,11 @@ export default function HomeWorksPreview() {
     // Select Yoga Portfolio project (id: 1)
     const yogaProject = projects.find((p) => p.id === 1) || projects[0];
 
-    useIframeButtonText(liveBtnRef, "VISIT LIVE SITE", lang);
+    useIframeButtonCustomization({
+        containerRef: liveBtnRef,
+        text: t(translations.home.visitLiveSite, lang),
+        lang,
+    });
 
     useEffect(() => {
         if (!containerRef.current) return;

@@ -12,11 +12,35 @@ import useIsMobile from "../../hooks/useIsMobile";
 import { useLang } from "../../i18n/LangContext";
 import { translations, t } from "../../i18n/translations";
 
+import { useIframeButtonCustomization } from "../../hooks/useIframeButtonCustomization";
 import { projects } from "./projectsData";
 
 const ShaderButtons = lazy(() =>
     import("@designcodeio/threeui").then((mod) => ({ default: mod.ShaderButtons }))
 );
+
+function ProjectShaderButton({ text, lang }: { text: string; lang: string }) {
+    const btnRef = useRef<HTMLDivElement>(null);
+    useIframeButtonCustomization({
+        containerRef: btnRef,
+        text,
+        lang,
+    });
+
+    return (
+        <div ref={btnRef} className="w-full h-full flex items-center justify-center">
+            <Suspense fallback={<div className="hero-primary-btn">{text}</div>}>
+                <ShaderButtons
+                    variant="induction-button"
+                    mode="dark"
+                    hue={0}
+                    saturation={1.00}
+                    brightness={1.00}
+                />
+            </Suspense>
+        </div>
+    );
+}
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -571,15 +595,7 @@ export default function Projects() {
                                                         rel="noopener noreferrer"
                                                         className="project-induction-wrap"
                                                     >
-                                                        <Suspense fallback={<div className="hero-primary-btn">View Project</div>}>
-                                                            <ShaderButtons
-                                                                variant="induction-button"
-                                                                mode="dark"
-                                                                hue={0}
-                                                                saturation={1.00}
-                                                                brightness={1.00}
-                                                            />
-                                                        </Suspense>
+                                                        <ProjectShaderButton text="VIEW PROJECT" lang={lang} />
                                                         <span className="absolute inset-0 z-20" aria-label="View Project" />
                                                     </a>
 
@@ -625,15 +641,7 @@ export default function Projects() {
                                                     rel="noopener noreferrer"
                                                     className="project-induction-wrap mt-2"
                                                 >
-                                                    <Suspense fallback={<div className="hero-primary-btn">View Project</div>}>
-                                                        <ShaderButtons
-                                                            variant="induction-button"
-                                                            mode="dark"
-                                                            hue={0}
-                                                            saturation={1.00}
-                                                            brightness={1.00}
-                                                        />
-                                                    </Suspense>
+                                                    <ProjectShaderButton text="VIEW PROJECT" lang={lang} />
                                                     <span className="absolute inset-0 z-20" aria-label="View Project" />
                                                 </a>
                                             </div>
