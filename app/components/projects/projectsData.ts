@@ -91,7 +91,7 @@ export const projects: Project[] = [
         category: { en: "AI/ML", ja: "AI/ML" },
         tech: ["Python", "PyTorch", "NumPy", "FastAPI", "React"],
         description: {
-            en: "Repurposing Drug means finding new useful ways to use already existing drugs for the treatment of various diseases, helping researchers find new drugs for diseases that don't have proper medication.",
+            en: "Repurposing Drug finds new uses for existing medicines, helping discover treatments for diseases without effective medication.",
             ja: "既存の医薬品の新しい有効な適応症を発見し、適切な治療法がない疾病の研究・創薬を支援するAI/創薬システム。"
         },
         type: { en: "ai-system", ja: "AIシステム" },

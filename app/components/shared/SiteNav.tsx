@@ -76,10 +76,6 @@ export default function SiteNav() {
 
     return (
         <nav ref={navRef} className="site-nav" aria-label="Site navigation">
-            <Link href="/" className="site-nav-logo">
-                {t(translations.nav.logo, lang)}
-            </Link>
-
             {/* Desktop links */}
             <ul className="site-nav-list site-nav-desktop">
                 {navKeys.map((key, i) => {

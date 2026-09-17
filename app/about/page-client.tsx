@@ -10,7 +10,7 @@ import SiteNav from "../components/shared/SiteNav";
 
 export default function About() {
     return (
-        <main className="w-full bg-[#0c0c0c]">
+        <main className="w-full bg-[#030303]">
             <SiteNav />
             {/* ── Section 1: Hero (dark) ── */}
             <AboutHero />

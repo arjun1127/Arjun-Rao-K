@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useRef } from "react";
+import { useCallback, useEffect, useMemo, useRef, lazy, Suspense } from "react";
 import { animate, stagger } from "animejs";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -11,8 +11,13 @@ import SiteNav from "../shared/SiteNav";
 import useIsMobile from "../../hooks/useIsMobile";
 import { useLang } from "../../i18n/LangContext";
 import { translations, t } from "../../i18n/translations";
+import "../shaders/threeui.css";
 
 import { projects } from "./projectsData";
+
+const ShaderButtons = lazy(() =>
+    import("@designcodeio/threeui").then((mod) => ({ default: mod.ShaderButtons }))
+);
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -560,14 +565,23 @@ export default function Projects() {
                                                         </span>
                                                     ))}
                                                 </div>
-
                                                 <div className="project-actions">
                                                     <a
-                                                        href={project.live}
-                                                        className="project-link"
+                                                        href={project.live || "#"}
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                        className="project-induction-wrap"
                                                     >
-                                                        Explore
-                                                        <ExternalLink size={15} />
+                                                        <Suspense fallback={<div className="hero-primary-btn">View Project</div>}>
+                                                            <ShaderButtons
+                                                                variant="induction-button"
+                                                                mode="dark"
+                                                                hue={0}
+                                                                saturation={1.00}
+                                                                brightness={1.00}
+                                                            />
+                                                        </Suspense>
+                                                        <span className="absolute inset-0 z-20" aria-label="View Project" />
                                                     </a>
 
                                                     {project.github &&
@@ -576,6 +590,8 @@ export default function Projects() {
                                                                 href={project.github}
                                                                 className="project-github"
                                                                 aria-label="GitHub"
+                                                                target="_blank"
+                                                                rel="noopener noreferrer"
                                                             >
                                                                 <Github size={17} />
                                                             </a>
@@ -605,11 +621,21 @@ export default function Projects() {
                                                 </h3>
 
                                                 <a
-                                                    href={project.live}
-                                                    className="project-back-link"
+                                                    href={project.live || "#"}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="project-induction-wrap mt-2"
                                                 >
-                                                    View Project
-                                                    <ArrowUpRight size={17} />
+                                                    <Suspense fallback={<div className="hero-primary-btn">View Project</div>}>
+                                                        <ShaderButtons
+                                                            variant="induction-button"
+                                                            mode="dark"
+                                                            hue={0}
+                                                            saturation={1.00}
+                                                            brightness={1.00}
+                                                        />
+                                                    </Suspense>
+                                                    <span className="absolute inset-0 z-20" aria-label="View Project" />
                                                 </a>
                                             </div>
 

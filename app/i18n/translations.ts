@@ -14,13 +14,42 @@ export const translations = {
     home: {
         kicker: { en: "Interactive Engineering Studio", ja: "インタラクティブエンジニアリングスタジオ" },
         title: { en: "ARJUN RAO", ja: "アルジュン・ラオ" },
-        subtitle: { en: "Software Engineer", ja: "ソフトウェアエンジニア" },
+        jpName: { en: "アルジュン・ラオ", ja: "アルジュン・ラオ" },
+        subtitle: { en: "SOFTWARE ENGINEER · CREATOR", ja: "ソフトウェアエンジニア・クリエイター" },
         description: {
             en: "Building immersive digital systems with animation-first design and engineering logic.",
             ja: "アニメーションファーストデザインとエンジニアリングロジックを使用して、没入型デジタルシステムを構築します。",
         },
+        narrativeLine1: {
+            en: "Building immersive digital experiences",
+            ja: "没入型デジタル体験の構築",
+        },
+        narrativeLine2: {
+            en: "where engineering, interaction & intelligent systems meet.",
+            ja: "エンジニアリング、インタラクション、知能システムが交差する場所。",
+        },
+        domainWeb: { en: "WEB", ja: "ウェブ" },
+        domainAI: { en: "AI", ja: "AI" },
+        domainInteraction: { en: "INTERACTION", ja: "インタラクション" },
+        currentlyLabel: { en: "CURRENTLY", ja: "現在" },
+        currentlyStatus: {
+            en: "Exploring 3D · AI · Creative Technology",
+            ja: "3D・AI・クリエイティブテクノロジーを探求中",
+        },
+        stage01: { en: "01 / INTRO", ja: "01 / イントロ" },
+        stage02: { en: "02 / BUILD", ja: "02 / 構築" },
+        stage03: { en: "03 / THINK", ja: "03 / 思考" },
+        stage04: { en: "04 / DISCOVER", ja: "04 / 発見" },
         viewProjects: { en: "View Projects", ja: "プロジェクトを見る" },
         aboutMe: { en: "About Me", ja: "自己紹介" },
+        knowMoreAboutMe: { en: "Know More About Me", ja: "私について詳しく見る" },
+        worksPreviewKicker: { en: "FEATURED WORK", ja: "フィーチャード作品" },
+        worksPreviewTitle: { en: "My Works", ja: "私の作品" },
+        viewAllProjects: { en: "View All Projects", ja: "すべてのプロジェクトを見る" },
+        visitLiveSite: { en: "Visit Live Site", ja: "ライブサイトを見る" },
+        contactTitle: { en: "Let's Connect", ja: "つながりましょう" },
+        contactSubtitle: { en: "Feel free to check out my GitHub or drop me an email directly.", ja: "GitHubをご覧いただくか、直接メールでお気軽にご連絡ください。" },
+        sendEmail: { en: "Send Email", ja: "メールを送る" },
         github: { en: "GitHub", ja: "GitHub" },
         linkedin: { en: "LinkedIn", ja: "LinkedIn" },
         resume: { en: "Resume", ja: "履歴書" },
@@ -48,7 +77,6 @@ export const translations = {
 
     /* ── About Page ── */
     about: {
-        heroTitle: { en: "Arjun Rao", ja: "アルジュン・ラオ" },
         heroDesc: {
             en: "ECE Graduate experienced in building AI based Web Applications and Machine Learning systems",
             ja: "AIベースのWebアプリケーションと機械学習システムの構築に経験があるECE卒業生",

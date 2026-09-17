@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import "@designcodeio/threeui/style.css";
 import "./globals.css";
 import { LangProvider } from "./i18n/LangContext";
 

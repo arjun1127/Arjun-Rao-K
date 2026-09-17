@@ -220,13 +220,6 @@ export default function AboutHero() {
                     {/* LEFT */}
                     <div className="hero-left-col">
 
-                        <h1
-                            ref={titleRef}
-                            className="hero-main-title"
-                        >
-                            {t(translations.about.heroTitle, lang)}
-                        </h1>
-
                         <p
                             ref={subtitleRef}
                             className="hero-description"
