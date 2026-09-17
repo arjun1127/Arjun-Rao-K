@@ -20,9 +20,7 @@ filesToPatch.forEach(file => {
     let modified = false;
 
     // 1. Ensure <button id="btn"> has span with id="btn-text"
-    // Replace <span ...> default text </span> inside button with id="btn-text" if not present
     if (!content.includes('id="btn-text"')) {
-        // Regex to match span inside button or relative span
         content = content.replace(
             /(<button[^>]*>[\s\S]*?<span\s+class="[^"]*")/i,
             '$1 id="btn-text"'
@@ -51,11 +49,48 @@ filesToPatch.forEach(file => {
         content = content.replace('</body>', `${messageScript}\n</body>`);
         modified = true;
     } else {
-        // Ensure the existing message handler updates text even if id="btn-text" wasn't matched
         if (!content.includes('querySelector(\'button span\')')) {
             content = content.replace(
                 /document\.getElementById\(['"]btn-text['"]\)/g,
                 "(document.getElementById('btn-text') || document.querySelector('button span'))"
+            );
+            modified = true;
+        }
+    }
+
+    // 3. Special color patch for aetheris-labs.html.js (About Me Plasma Button -> Purple Shades)
+    if (file === 'aetheris-labs.html.js') {
+        // Replace blue shader colors with purple shader colors
+        if (content.includes("vec3 c1 = vec3(0.002, 0.004, 0.015);") || !content.includes("vec3 c1 = vec3(0.015, 0.003, 0.035);")) {
+            content = content.replace(/vec3 c1 = vec3\([^)]+\);/g, "vec3 c1 = vec3(0.015, 0.003, 0.035);");
+            content = content.replace(/vec3 c2 = vec3\([^)]+\);/g, "vec3 c2 = vec3(0.22, 0.05, 0.42);");
+            content = content.replace(/vec3 c3 = vec3\([^)]+\);/g, "vec3 c3 = vec3(0.68, 0.22, 1.0);");
+            
+            // Add c4 if not present or update it
+            if (!content.includes("vec3 c4")) {
+                content = content.replace(
+                    "vec3 c3 = vec3(0.68, 0.22, 1.0);",
+                    "vec3 c3 = vec3(0.68, 0.22, 1.0);\n            '  vec3 c4 = vec3(0.92, 0.76, 1.0);'"
+                );
+                content = content.replace(
+                    "'  vec3 col = mix(c1, c2, smoothstep(0.1, 0.6, m));',",
+                    "'  vec3 col = mix(c1, c2, smoothstep(0.2, 0.52, m));',\n            '  col = mix(col, c3, smoothstep(0.52, 0.8, m));',\n            '  col = mix(col, c4, smoothstep(0.82, 1.02, m));',"
+                );
+            }
+            
+            content = content.replace(
+                /col \+= vec3\([^)]+\) \* vein \* \([^)]+\);/g,
+                "col += vec3(0.72, 0.25, 1.0) * vein * (0.12 + heat * 0.25);"
+            );
+            
+            // Update box shadows & fallback gradient to purple
+            content = content.replace(/rgba\(4, 98, 126, 0.2\)/g, "rgba(120, 30, 200, 0.2)");
+            content = content.replace(/rgba\(0, 210, 255, 0\.35\)/g, "rgba(160, 50, 240, 0.35)");
+            content = content.replace(/hoverStyles = "[^"]*"/g, 'hoverStyles = "0 30px 60px rgba(160, 50, 240, 0.35), 0 4px 12px rgba(2, 6, 20, 0.4)"');
+            content = content.replace(/defaultStyles = "[^"]*"/g, 'defaultStyles = "0 24px 48px rgba(120, 30, 200, 0.2), 0 3px 10px rgba(2, 6, 20, 0.35)"');
+            content = content.replace(
+                /radial-gradient\([^)]+\)/g,
+                "radial-gradient(130% 170% at 50% 118%, #c084fc 0%, #9333ea 24%, #4c1d95 56%, #050a19 88%)"
             );
             modified = true;
         }
