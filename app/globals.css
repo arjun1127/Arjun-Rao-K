@@ -253,46 +253,53 @@
     border-radius: 16px;
   }
 
-  /* ── Induction Shader Button Wrapper ── */
+  /* ── Induction Shader Button Wrapper (High Specificity Production Protection) ── */
+  html body .home-hero-induction-wrap,
+  html body .project-induction-wrap,
+  html body .induction-btn-wrap,
   .home-hero-induction-wrap,
   .project-induction-wrap,
   .induction-btn-wrap {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 195px;
-    height: 52px;
-    margin: 0;
-    padding: 0;
-    border-radius: 14px;
+    position: relative !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 195px !important;
+    height: 52px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border-radius: 14px !important;
     background: transparent !important;
     border: none !important;
     outline: none !important;
     box-shadow: none !important;
-    overflow: hidden;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-    text-decoration: none;
+    overflow: hidden !important;
+    cursor: pointer !important;
+    transition: transform 0.3s ease !important;
+    text-decoration: none !important;
   }
 
-  .home-hero-induction-wrap:hover,
-  .project-induction-wrap:hover,
-  .induction-btn-wrap:hover {
-    transform: translateY(-2px);
+  html body .home-hero-induction-wrap:hover,
+  html body .project-induction-wrap:hover,
+  html body .induction-btn-wrap:hover {
+    transform: translateY(-2px) !important;
   }
 
+  html body .home-hero-induction-wrap iframe,
+  html body .project-induction-wrap iframe,
+  html body .induction-btn-wrap iframe,
   .home-hero-induction-wrap iframe,
   .project-induction-wrap iframe,
   .induction-btn-wrap iframe {
     background: transparent !important;
     border: none !important;
     outline: none !important;
-    border-radius: 14px;
+    border-radius: 14px !important;
     width: 100% !important;
     height: 100% !important;
     margin: 0 !important;
     padding: 0 !important;
+    pointer-events: auto !important;
   }
 
   /* ── Works Preview Container Background Override ── */
@@ -300,7 +307,7 @@
     background: transparent !important;
   }
 
-  .works-preview-container > div:first-child iframe {
+  .works-preview-container>div:first-child iframe {
     pointer-events: none !important;
     border-radius: 32px !important;
   }
@@ -693,23 +700,32 @@
   @media (max-width: 768px) {
 
     .about-hero {
-      padding: 110px 0 40px;
+      padding: 100px 0 32px;
       min-height: auto;
       justify-content: flex-start;
     }
 
     .about-hero-content {
       padding: 0 24px;
+      transform: none;
     }
 
     .hero-grid {
       grid-template-columns: 1fr;
-      gap: 36px;
+      gap: 32px;
     }
 
     .hero-left-col {
       text-align: center;
-      transform: translateY(80px);
+      transform: none;
+    }
+
+    .home-hero-kicker {
+      justify-content: center;
+    }
+
+    .home-hero-plasma-wrap {
+      margin-inline: auto;
     }
 
     .hero-main-title {
@@ -722,6 +738,7 @@
       line-height: 1.8;
       margin-inline: auto;
       margin-bottom: 28px;
+      margin-top: 10px
     }
 
     .hero-info-card {
@@ -742,7 +759,7 @@
 
     .hero-buttons {
       flex-direction: column;
-      align-items: stretch;
+      align-items: center;
     }
 
     .hero-image-wrapper {
@@ -753,7 +770,7 @@
     .hero-image-frame {
       padding: 10px;
       border-radius: 24px;
-      margin-top: 60px;
+      margin-top: 24px;
     }
 
     .hero-image {
@@ -772,18 +789,18 @@
   @media (max-width: 480px) {
 
     .about-hero {
-      padding: 110px 0 32px;
+      padding: 90px 0 24px;
       min-height: auto;
       justify-content: flex-start;
     }
 
     .about-hero-content {
       padding: 0 16px;
-      transform: translateY(80px);
+      transform: none;
     }
 
     .hero-grid {
-      gap: 28px;
+      gap: 24px;
     }
 
     .hero-main-title {
@@ -795,6 +812,7 @@
       font-size: 0.85rem;
       line-height: 1.7;
       margin-bottom: 24px;
+      margin-top: 100px
     }
 
     .hero-info-card {

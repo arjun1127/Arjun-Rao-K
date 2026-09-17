@@ -11,7 +11,6 @@ import SiteNav from "../shared/SiteNav";
 import useIsMobile from "../../hooks/useIsMobile";
 import { useLang } from "../../i18n/LangContext";
 import { translations, t } from "../../i18n/translations";
-import "../shaders/threeui.css";
 
 import { projects } from "./projectsData";
 

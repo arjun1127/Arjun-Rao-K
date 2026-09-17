@@ -6,7 +6,6 @@ import ProjectsHero from "../components/projects/ProjectsHero";
 import SiteNav from "../components/shared/SiteNav";
 import * as THREE from "three";
 import useIsMobile from "../hooks/useIsMobile";
-import "../components/shaders/threeui.css";
 
 export default function Projects() {
     const pageRef = useRef<HTMLElement>(null);

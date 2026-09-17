@@ -224,10 +224,6 @@ export default function AboutHero() {
                             ref={subtitleRef}
                             className="hero-description"
                         >
-                            {t(translations.about.heroDesc, lang)}
-
-                            <br />
-                            <br />
 
                             {t(translations.about.heroDesc2, lang)}
                         </p>

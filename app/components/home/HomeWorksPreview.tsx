@@ -9,7 +9,7 @@ import { projects } from "../projects/projectsData";
 import { useLang } from "../../i18n/LangContext";
 import { translations, t } from "../../i18n/translations";
 import { ExternalLink, ArrowRight, FolderKanban } from "lucide-react";
-import "../shaders/threeui.css";
+import { useIframeButtonText } from "../../hooks/useIframeButtonText";
 
 const ShaderButtons = lazy(() =>
     import("@designcodeio/threeui").then((mod) => ({ default: mod.ShaderButtons }))
@@ -31,17 +31,7 @@ export default function HomeWorksPreview() {
     // Select Yoga Portfolio project (id: 1)
     const yogaProject = projects.find((p) => p.id === 1) || projects[0];
 
-    useEffect(() => {
-        if (!liveBtnRef.current) return;
-        const iframe = liveBtnRef.current.querySelector("iframe");
-        if (!iframe) return;
-        const sendMsg = () => {
-            iframe.contentWindow?.postMessage({ btnText: "VISIT LIVE SITE" }, "*");
-        };
-        sendMsg();
-        iframe.addEventListener("load", sendMsg);
-        return () => iframe.removeEventListener("load", sendMsg);
-    }, [lang]);
+    useIframeButtonText(liveBtnRef, "VISIT LIVE SITE", lang);
 
     useEffect(() => {
         if (!containerRef.current) return;
@@ -150,7 +140,7 @@ export default function HomeWorksPreview() {
                         </div>
 
                         {/* ACTIONS */}
-                        <div className="flex flex-wrap items-center gap-4 pt-4 border-t border-gray-200/80">
+                        <div className="flex flex-wrap items-center justify-center sm:justify-start gap-4 pt-4 border-t border-gray-200/80">
                             {yogaProject.live && (
                                 <a
                                     ref={liveBtnRef}
