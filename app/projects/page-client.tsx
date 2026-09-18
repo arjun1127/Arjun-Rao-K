@@ -1,25 +1,16 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import gsap from "gsap";
 import ProjectsHero from "../components/projects/ProjectsHero";
 import SiteNav from "../components/shared/SiteNav";
-import * as THREE from "three";
-import useIsMobile from "../hooks/useIsMobile";
+import ErrorBoundary from "../components/shared/ErrorBoundary";
 
 export default function Projects() {
-    const pageRef = useRef<HTMLElement>(null);
-    const canvasRef = useRef<HTMLCanvasElement>(null);
-    const isMobile = useIsMobile();
-
     return (
-        <>
-
-            <main ref={pageRef} className="projects-page-root" data-page="projects">
-                <canvas ref={canvasRef} className="projects-hero-canvas" />
-                <SiteNav />
+        <main className="projects-page-root" data-page="projects">
+            <SiteNav />
+            <ErrorBoundary fallback={<div className="min-h-screen bg-[#030303] text-white p-8">Loading Projects...</div>}>
                 <ProjectsHero />
-            </main>
-        </>
+            </ErrorBoundary>
+        </main>
     );
 }

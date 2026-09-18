@@ -197,7 +197,7 @@ export default function Socials() {
 
         const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-        renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+        renderer.setSize(canvas.clientWidth, canvas.clientHeight, false);
 
         const particleCount = 500;
         const particlePositions = new Float32Array(particleCount * 3);
@@ -275,9 +275,10 @@ export default function Socials() {
         const resize = () => {
             const width = canvas.clientWidth;
             const height = Math.max(canvas.clientHeight, 1);
+            if (width === 0 || height === 0) return;
             camera.aspect = width / height;
             camera.updateProjectionMatrix();
-            renderer.setSize(width, height);
+            renderer.setSize(width, height, false);
         };
 
         window.addEventListener("resize", resize);

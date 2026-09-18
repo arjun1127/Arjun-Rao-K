@@ -12,6 +12,7 @@ import useIsMobile from "../../hooks/useIsMobile";
 import { useLang } from "../../i18n/LangContext";
 import { translations, t } from "../../i18n/translations";
 
+import ErrorBoundary from "../shared/ErrorBoundary";
 import { useIframeButtonCustomization } from "../../hooks/useIframeButtonCustomization";
 import { projects } from "./projectsData";
 
@@ -27,18 +28,22 @@ function ProjectShaderButton({ text, lang }: { text: string; lang: string }) {
         lang,
     });
 
+    const fallbackBtn = <div className="hero-primary-btn">{text}</div>;
+
     return (
-        <div ref={btnRef} className="w-full h-full flex items-center justify-center">
-            <Suspense fallback={<div className="hero-primary-btn">{text}</div>}>
-                <ShaderButtons
-                    variant="induction-button"
-                    mode="dark"
-                    hue={0}
-                    saturation={1.00}
-                    brightness={1.00}
-                />
-            </Suspense>
-        </div>
+        <ErrorBoundary fallback={fallbackBtn}>
+            <div ref={btnRef} className="w-full h-full flex items-center justify-center">
+                <Suspense fallback={fallbackBtn}>
+                    <ShaderButtons
+                        variant="induction-button"
+                        mode="dark"
+                        hue={0}
+                        saturation={1.00}
+                        brightness={1.00}
+                    />
+                </Suspense>
+            </div>
+        </ErrorBoundary>
     );
 }
 
@@ -180,7 +185,8 @@ export default function Projects() {
 
         renderer.setSize(
             canvas.clientWidth,
-            canvas.clientHeight
+            canvas.clientHeight,
+            false
         );
 
         /*
@@ -362,24 +368,16 @@ export default function Projects() {
          */
 
         const resize = () => {
-            const width =
-                canvas.clientWidth;
+            if (!canvas) return;
+            const width = canvas.clientWidth;
+            const height = Math.max(canvas.clientHeight, 1);
 
-            const height =
-                Math.max(
-                    canvas.clientHeight,
-                    1
-                );
+            if (width === 0 || height === 0) return;
 
-            camera.aspect =
-                width / height;
-
+            camera.aspect = width / height;
             camera.updateProjectionMatrix();
 
-            renderer.setSize(
-                width,
-                height
-            );
+            renderer.setSize(width, height, false);
         };
 
         window.addEventListener(
@@ -639,10 +637,9 @@ export default function Projects() {
                                                     href={project.live || "#"}
                                                     target="_blank"
                                                     rel="noopener noreferrer"
-                                                    className="project-induction-wrap mt-2"
+                                                    className="hero-primary-btn mt-2 inline-flex items-center justify-center"
                                                 >
-                                                    <ProjectShaderButton text="VIEW PROJECT" lang={lang} />
-                                                    <span className="absolute inset-0 z-20" aria-label="View Project" />
+                                                    {t(translations.home.visitLiveSite, lang) || "VIEW PROJECT"}
                                                 </a>
                                             </div>
 

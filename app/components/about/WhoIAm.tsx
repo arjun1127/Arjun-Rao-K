@@ -29,7 +29,7 @@ export default function WhoIAm() {
         camera.position.z = 4;
 
         const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
-        renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+        renderer.setSize(canvas.clientWidth, canvas.clientHeight, false);
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
         // Wireframe icosahedron
@@ -78,9 +78,10 @@ export default function WhoIAm() {
         const handleResize = () => {
             const w = canvas.clientWidth;
             const h = canvas.clientHeight;
+            if (w === 0 || h === 0) return;
             camera.aspect = w / h;
             camera.updateProjectionMatrix();
-            renderer.setSize(w, h);
+            renderer.setSize(w, h, false);
         };
         window.addEventListener("resize", handleResize);
 
