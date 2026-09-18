@@ -599,6 +599,8 @@
   .hero-image-wrapper {
     position: relative;
     width: 100%;
+    max-width: 480px;
+    margin-inline: auto;
   }
 
   .hero-image-glow {
@@ -609,19 +611,19 @@
     position: relative;
     z-index: 2;
     overflow: hidden;
-    border-radius: 36px;
-    border: 1px solid #ffffff;
-    padding: 14px;
-    background: transparent;
-    box-shadow: none;
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.03);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
   }
 
   .hero-image {
     width: 100%;
-    height: auto;
-    object-fit: contain;
-    object-position: center top;
-    border-radius: 28px;
+    height: 250px;
+    object-fit: cover;
+    object-position: center 20%;
+    border-radius: 16px;
     display: block;
   }
 
@@ -763,18 +765,19 @@
     }
 
     .hero-image-wrapper {
-      max-width: 320px;
+      max-width: 380px;
       margin-inline: auto;
     }
 
     .hero-image-frame {
-      padding: 10px;
-      border-radius: 24px;
+      padding: 8px;
+      border-radius: 20px;
       margin-top: 24px;
     }
 
     .hero-image {
-      border-radius: 18px;
+      height: 200px;
+      border-radius: 14px;
     }
 
     .hero-floating-card {
@@ -828,17 +831,18 @@
     }
 
     .hero-image-wrapper {
-      max-width: 260px;
-      margin-bottom: 60px
+      max-width: 300px;
+      margin-bottom: 40px;
     }
 
     .hero-image-frame {
-      padding: 8px;
-      border-radius: 20px;
+      padding: 6px;
+      border-radius: 16px;
     }
 
     .hero-image {
-      border-radius: 14px;
+      height: 160px;
+      border-radius: 12px;
     }
 
     .hero-floating-card {

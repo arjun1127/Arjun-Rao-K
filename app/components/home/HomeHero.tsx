@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useEffect, useRef, Suspense, lazy } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -28,13 +27,12 @@ const ShaderButtons = lazy(() =>
 );
 
 export default function HomeHero() {
-    const router = useRouter();
     const heroRef = useRef<HTMLElement>(null);
     const titleRef = useRef<HTMLHeadingElement>(null);
     const kickerRef = useRef<HTMLDivElement>(null);
     const previewTextRef = useRef<HTMLParagraphElement>(null);
     const cardRef = useRef<HTMLDivElement>(null);
-    const plasmaBtnRef = useRef<HTMLDivElement>(null);
+    const plasmaBtnRef = useRef<HTMLAnchorElement>(null);
     const imageWrapRef = useRef<HTMLDivElement>(null);
     const floatingCardRef = useRef<HTMLDivElement>(null);
     const scrollRef = useRef<HTMLDivElement>(null);
@@ -168,13 +166,11 @@ export default function HomeHero() {
 
                         <div ref={cardRef} className="">
                             <div className="hero-buttons">
-                                <div
+                                <Link
                                     ref={plasmaBtnRef}
-                                    onClick={() => router.push("/about")}
+                                    href="/about"
                                     className="home-hero-plasma-wrap"
-                                    role="button"
-                                    tabIndex={0}
-                                    onKeyDown={(e) => e.key === "Enter" && router.push("/about")}
+                                    aria-label={t(translations.home.aboutMe, lang)}
                                 >
                                     <Suspense fallback={<div className="hero-primary-btn">{t(translations.home.aboutMe, lang)}</div>}>
                                         <ShaderButtons
@@ -185,7 +181,8 @@ export default function HomeHero() {
                                             brightness={1.00}
                                         />
                                     </Suspense>
-                                </div>
+                                    <span className="absolute inset-0 z-20" aria-label={t(translations.home.aboutMe, lang)} />
+                                </Link>
                             </div>
                         </div>
                     </div>
