@@ -43,6 +43,7 @@ export const translations = {
         viewProjects: { en: "View Projects", ja: "プロジェクトを見る" },
         aboutMe: { en: "About Me", ja: "自己紹介" },
         knowMoreAboutMe: { en: "Know More About Me", ja: "私について詳しく見る" },
+        upworkProfile: { en: "Upwork Profile", ja: "Upwork プロフィール" },
         worksPreviewKicker: { en: "FEATURED WORK", ja: "フィーチャード作品" },
         worksPreviewTitle: { en: "My Works", ja: "私の作品" },
         viewAllProjects: { en: "View All Projects", ja: "すべてのプロジェクトを見る" },
@@ -216,13 +217,13 @@ export const translations = {
             { en: "Code experiments", ja: "コード実験" },
         ],
         githubCta: { en: "View Profile", ja: "プロフィールを見る" },
-        storeTitle: { en: "CODE[STORE]", ja: "コード[ストア]" },
-        storeLines: [
-            { en: "Reusable code systems", ja: "再利用可能なコードシステム" },
-            { en: "Animation templates", ja: "アニメーションテンプレート" },
-            { en: "Production-ready patterns", ja: "本番対応パターン" },
+        upworkTitle: { en: "Upwork (Freelance)", ja: "Upwork (フリーランス)" },
+        upworkLines: [
+            { en: "Full-stack & AI Web Apps", ja: "フルスタック & AI Webアプリ開発" },
+            { en: "Custom Web Experiences", ja: "カスタムWebエクスペリエンス" },
+            { en: "Freelance Contracts & Consulting", ja: "フリーランス契約 & 開発相談" },
         ],
-        storeCta: { en: "Open Store", ja: "ストアを開く" },
+        upworkCta: { en: "Hire on Upwork", ja: "Upworkで依頼する" },
         contactTitle: { en: "Direct Contact", ja: "直接連絡" },
         contactLines: [
             { en: "Project inquiry", ja: "プロジェクトの問い合わせ" },

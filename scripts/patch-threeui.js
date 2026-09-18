@@ -96,6 +96,29 @@ filesToPatch.forEach(file => {
         }
     }
 
+    // 4. Mute cdn.tailwindcss.com warning & extension message channel errors inside iframe templates
+    if (content.includes('cdn.tailwindcss.com') && !content.includes('cdn.tailwindcss.com suppressor')) {
+        const suppressScript = `<script>
+    /* cdn.tailwindcss.com suppressor */
+    (function() {
+        var _w = console.warn;
+        console.warn = function() {
+            if (arguments[0] && typeof arguments[0] === 'string' && (arguments[0].indexOf('cdn.tailwindcss.com') !== -1 || arguments[0].indexOf('Tailwind CSS') !== -1)) return;
+            _w.apply(console, arguments);
+        };
+        window.addEventListener('unhandledrejection', function(e) {
+            var m = (e.reason && e.reason.message) || e.reason || '';
+            if (typeof m === 'string' && (m.indexOf('asynchronous response') !== -1 || m.indexOf('message channel closed') !== -1)) {
+                e.preventDefault();
+            }
+        });
+    })();
+    <\/script>\n    <script src="https://cdn.tailwindcss.com">`;
+
+        content = content.replace('<script src="https://cdn.tailwindcss.com">', suppressScript);
+        modified = true;
+    }
+
     if (modified) {
         fs.writeFileSync(filePath, content, 'utf8');
         patchedCount++;

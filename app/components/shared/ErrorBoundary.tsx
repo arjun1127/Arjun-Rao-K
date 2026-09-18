@@ -24,6 +24,31 @@ export default class ErrorBoundary extends Component<Props, State> {
         console.warn("[ErrorBoundary caught error]:", error, errorInfo);
     }
 
+    public componentDidMount() {
+        if (typeof window !== "undefined") {
+            window.addEventListener("unhandledrejection", this.handleUnhandledRejection);
+        }
+    }
+
+    public componentWillUnmount() {
+        if (typeof window !== "undefined") {
+            window.removeEventListener("unhandledrejection", this.handleUnhandledRejection);
+        }
+    }
+
+    private handleUnhandledRejection = (event: PromiseRejectionEvent) => {
+        const reason = event.reason;
+        const msg = typeof reason === "string" ? reason : reason?.message || "";
+
+        if (
+            msg.includes("A listener indicated an asynchronous response") ||
+            msg.includes("message channel closed") ||
+            msg.includes("The message port closed before a response was received")
+        ) {
+            event.preventDefault();
+        }
+    };
+
     public render() {
         if (this.state.hasError) {
             return this.props.fallback || null;

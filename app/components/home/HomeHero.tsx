@@ -7,7 +7,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useLang } from "../../i18n/LangContext";
 import { translations, t } from "../../i18n/translations";
-import { ArrowRight, User } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Briefcase, User } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -165,7 +165,7 @@ export default function HomeHero() {
                         </p>
 
                         <div ref={cardRef} className="">
-                            <div className="hero-buttons">
+                            <div className="hero-buttons flex flex-wrap items-center gap-4">
                                 <Link
                                     ref={plasmaBtnRef}
                                     href="/about"
@@ -183,6 +183,18 @@ export default function HomeHero() {
                                     </Suspense>
                                     <span className="absolute inset-0 z-20" aria-label={t(translations.home.aboutMe, lang)} />
                                 </Link>
+
+                                <a
+                                    href="https://www.upwork.com/freelancers/~01f571e2423337dc6f?mp_source=share"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="home-hero-upwork-btn group"
+                                    aria-label={t(translations.home.upworkProfile, lang)}
+                                >
+                                    <Briefcase size={18} className="text-[#c084fc] group-hover:scale-110 transition-transform" />
+                                    <span>{t(translations.home.upworkProfile, lang)}</span>
+                                    <ArrowUpRight size={16} className="text-white/50 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+                                </a>
                             </div>
                         </div>
                     </div>

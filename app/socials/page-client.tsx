@@ -5,7 +5,7 @@ import { animate, stagger } from "animejs";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import * as THREE from "three";
-import { Code2, Github, Play, Send } from "lucide-react";
+import { Briefcase, Github, Play, Send } from "lucide-react";
 import SiteNav from "../components/shared/SiteNav";
 import useIsMobile from "../hooks/useIsMobile";
 import { useLang } from "../i18n/LangContext";
@@ -19,7 +19,7 @@ type HubCard = {
     lines: string[];
     cta: string;
     href: string;
-    icon: "github" | "store" | "contact";
+    icon: "github" | "upwork" | "contact";
 };
 
 const hubCards: HubCard[] = [
@@ -33,12 +33,12 @@ const hubCards: HubCard[] = [
         icon: "github",
     },
     {
-        id: "store",
-        title: "CODE[STORE]",
-        lines: ["Reusable code systems", "Animation templates", "Production-ready patterns"],
-        cta: "Open Store",
-        href: "https://code-store-1.onrender.com/",
-        icon: "store",
+        id: "upwork",
+        title: "Upwork (Freelance)",
+        lines: ["Full-stack & AI Web Apps", "Custom Web Experiences", "Freelance Contracts & Consulting"],
+        cta: "Hire on Upwork",
+        href: "https://www.upwork.com/freelancers/~01f571e2423337dc6f?mp_source=share",
+        icon: "upwork",
     },
     {
         id: "contact",
@@ -75,12 +75,12 @@ export default function Socials() {
             icon: "github" as const,
         },
         {
-            id: "store",
-            title: t(translations.socials.storeTitle, lang),
-            lines: translations.socials.storeLines.map((l) => t(l, lang)),
-            cta: t(translations.socials.storeCta, lang),
-            href: "https://code-store-1.onrender.com/",
-            icon: "store" as const,
+            id: "upwork",
+            title: t(translations.socials.upworkTitle, lang),
+            lines: translations.socials.upworkLines.map((l) => t(l, lang)),
+            cta: t(translations.socials.upworkCta, lang),
+            href: "https://www.upwork.com/freelancers/~01f571e2423337dc6f?mp_source=share",
+            icon: "upwork" as const,
         },
         {
             id: "contact",
@@ -424,17 +424,17 @@ export default function Socials() {
                                     <div className="hub-card-head">
                                         <div className="hub-card-icon">
                                             {card.icon === "github" && <Github size={20} />}
-                                            {card.icon === "store" && <Code2 size={20} />}
+                                            {card.icon === "upwork" && <Briefcase size={20} />}
                                             {card.icon === "contact" && <Send size={20} />}
                                         </div>
                                         <h3>{card.title}</h3>
                                     </div>
 
-                                    {card.id === "store" && (
+                                    {card.id === "upwork" && (
                                         <div className="hub-code-lines">
-                                            <span className="code-line">&lt;code /&gt;</span>
-                                            <span className="code-line">&lt;/&gt;</span>
-                                            <span className="code-line">const motion = true;</span>
+                                            <span className="code-line">Top Rated Freelancer</span>
+                                            <span className="code-line">Full-stack &amp; AI Apps</span>
+                                            <span className="code-line">Available for Contracts</span>
                                         </div>
                                     )}
 
@@ -444,7 +444,11 @@ export default function Socials() {
                                         ))}
                                     </ul>
 
-                                    <a href={card.href} className="hub-link-btn">
+                                    <a
+                                        href={card.href}
+                                        className="hub-link-btn"
+                                        {...(card.href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                                    >
                                         {card.cta}
                                     </a>
                                 </article>

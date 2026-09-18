@@ -253,6 +253,44 @@
     border-radius: 16px;
   }
 
+  /* ── Upwork Hero Button ── */
+  .home-hero-upwork-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    height: 70px;
+    padding: 0 24px;
+    border-radius: 16px;
+    background: transparent;
+    border: 1px solid rgba(168, 85, 247, 0.5);
+    color: #ffffff;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 0 20px rgba(168, 85, 247, 0.15);
+  }
+
+  .home-hero-upwork-btn span {
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.4), 0 0 30px rgba(255, 255, 255, 0.2);
+    letter-spacing: 0.02em;
+    transition: text-shadow 0.3s ease;
+  }
+
+  .home-hero-upwork-btn:hover {
+    transform: translateY(-2px);
+    background: transparent;
+    border-color: rgba(192, 132, 252, 0.85);
+    box-shadow: 0 0 30px rgba(168, 85, 247, 0.35);
+    color: #ffffff;
+  }
+
+  .home-hero-upwork-btn:hover span {
+    text-shadow: 0 0 12px rgba(255, 255, 255, 1), 0 0 24px rgba(255, 255, 255, 0.6), 0 0 36px rgba(255, 255, 255, 0.4);
+  }
+
   /* ── Shader Button Wrappers (Clean Component Specificity) ── */
   html body .home-hero-plasma-wrap,
   html body .home-hero-induction-wrap,
