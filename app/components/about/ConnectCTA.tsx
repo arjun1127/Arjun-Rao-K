@@ -5,6 +5,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useLang } from "../../i18n/LangContext";
 import { translations, t } from "../../i18n/translations";
+import SweepText from "../shared/SweepText";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -39,7 +40,16 @@ export default function ConnectCTA() {
 
     return (
         <section ref={sectionRef} className="about-dark-section cta-section">
-            <h2>{t(translations.about.ctaTitle, lang)}</h2>
+            <SweepText
+                as="h2"
+                text={t(translations.about.ctaTitle, lang)}
+                initialColor="rgba(255,255,255,0.35)"
+                sweepColor="#5470EB"
+                finalColor="#ffffff"
+                stagger={0.08}
+                sweepDuration={0.6}
+                returnDuration={0.8}
+            />
             <a href="mailto:arjunkrao2004@gmail.com" className="glow-button">
                 {t(translations.about.ctaButton, lang)}
             </a>

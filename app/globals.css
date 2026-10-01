@@ -468,7 +468,7 @@
     align-items: center;
     justify-content: center;
     position: relative;
-    padding-top: 80px;
+    padding-top: 0;
   }
 
   .about-hero canvas {
@@ -577,7 +577,7 @@
 
     border-radius: 999px;
 
-    border: 1px solid rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(9, 2, 67, 0.805);
 
     color: #ffffff;
 
@@ -590,6 +590,13 @@
     font-family: monospace;
   }
 
+  .hero-tags span:hover {
+    background: rgba(3, 12, 82, 0.45);
+    transition: 0.3s ease;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+  }
+
   /* BUTTONS */
 
   .hero-buttons {
@@ -600,18 +607,18 @@
   .hero-primary-btn {
     padding: 12px 24px;
     border-radius: 14px;
-    background: #5470EB;
+    background: #000000;
     color: white;
     font-weight: 600;
     transition: 0.3s ease;
     text-decoration: none;
-    box-shadow:
-      0 0 30px rgba(84, 112, 235, 0.35);
+    border: 1px solid rgba(0, 209, 232, 0.909);
+
   }
 
   .hero-primary-btn:hover {
     transform: translateY(-3px);
-    background: #435DDB;
+    background: #044ff1;
   }
 
   .hero-secondary-btn {
@@ -619,7 +626,7 @@
 
     border-radius: 14px;
 
-    border: 1px solid rgba(255, 255, 255, 0.14);
+    border: 1px solid rgb(0, 217, 255);
 
     color: rgba(255, 255, 255, 0.85);
 
@@ -629,7 +636,7 @@
   }
 
   .hero-secondary-btn:hover {
-    background: rgba(255, 255, 255, 0.05);
+    background: #0a0f24;
   }
 
   /* IMAGE */
@@ -679,14 +686,14 @@
 
     border-radius: 22px;
 
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    border: 1px solid rgb(3, 6, 72);
 
     background: rgba(255, 255, 255, 0.08);
 
     backdrop-filter: blur(16px);
 
     box-shadow:
-      0 16px 40px rgba(0, 0, 0, 0.35);
+      0 16px 40px rgba(8, 2, 75, 0.405);
   }
 
   .floating-label {
@@ -737,9 +744,15 @@
 
   @media (max-width: 768px) {
 
-    .home-hero-section,
-    .about-hero {
+    .home-hero-section {
       padding-top: 76px;
+      padding-bottom: 32px;
+      min-height: auto;
+      justify-content: flex-start;
+    }
+
+    .about-hero {
+      padding-top: 0;
       padding-bottom: 32px;
       min-height: auto;
       justify-content: flex-start;
@@ -3313,23 +3326,19 @@
   /* ── About Hero mobile ── */
   .about-hero {
     min-height: auto;
-    padding-top: 76px;
+    padding-top: 0;
     padding-bottom: 32px;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 0;
+    padding-right: 0;
   }
 
   @media (max-width: 480px) {
     .about-hero {
-      padding-top: 70px;
+      padding-top: 0;
       padding-bottom: 24px;
-      padding-left: 16px;
-      padding-right: 16px;
+      padding-left: 0;
+      padding-right: 0;
     }
-  }
-
-  .about-hero h1 {
-    font-size: clamp(2.4rem, 10vw, 4rem);
   }
 
   /* ── Who Section mobile ── */

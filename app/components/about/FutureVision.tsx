@@ -5,6 +5,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useLang } from "../../i18n/LangContext";
 import { translations, t } from "../../i18n/translations";
+import SweepText from "../shared/SweepText";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -47,9 +48,17 @@ export default function FutureVision() {
             <h2>{t(translations.about.futureTitle, lang)}</h2>
             <div ref={itemsRef} className="future-items">
                 {explorations.map((item, i) => (
-                    <div key={i} className="future-item">
-                        {item}
-                    </div>
+                    <SweepText
+                        key={i}
+                        text={item}
+                        className="future-item"
+                        initialColor="rgba(255,255,255,0.35)"
+                        sweepColor="#5470EB"
+                        finalColor="rgba(255,255,255,0.9)"
+                        stagger={0.08}
+                        sweepDuration={0.6}
+                        returnDuration={0.8}
+                    />
                 ))}
             </div>
         </div>

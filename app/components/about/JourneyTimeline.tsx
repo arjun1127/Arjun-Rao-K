@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { animate, stagger } from "animejs";
 import { useLang } from "../../i18n/LangContext";
 import { translations, t } from "../../i18n/translations";
+import SweepText from "../shared/SweepText";
 
 export default function JourneyTimeline() {
     const sectionRef = useRef<HTMLDivElement>(null);
@@ -65,7 +66,16 @@ export default function JourneyTimeline() {
                         <div className="timeline-dot" />
                         <div className="timeline-year">{m.year}</div>
                         <div className="timeline-label">{m.label}</div>
-                        <div className="timeline-desc">{m.desc}</div>
+                        <SweepText
+                            text={m.desc}
+                            className="timeline-desc"
+                            initialColor="rgba(255,255,255,0.35)"
+                            sweepColor="#5470EB"
+                            finalColor="#ffffff"
+                            stagger={0.08}
+                            sweepDuration={0.6}
+                            returnDuration={0.8}
+                        />
                     </div>
                 ))}
             </div>

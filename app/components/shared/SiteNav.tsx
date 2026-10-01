@@ -7,8 +7,8 @@ import useIsMobile from "../../hooks/useIsMobile";
 import { useLang } from "../../i18n/LangContext";
 import { translations, t } from "../../i18n/translations";
 
-const navKeys = ["home", "about", "projects", "socials"] as const;
-const navHrefs = ["/", "/about", "/projects", "/socials"] as const;
+const navKeys = ["home", "projects", "socials"] as const;
+const navHrefs = ["/", "/projects", "/socials"] as const;
 
 export default function SiteNav() {
     const pathname = usePathname();

@@ -96,16 +96,16 @@ export const translations = {
         whoKicker: { en: "WHO I AM", ja: "私について" },
         whoTitle: { en: "Hello !,", ja: "こんにちは！" },
         whoDesc1: {
-            en: "I'm currently balancing between learning Japanese and building software systems.",
-            ja: "現在、日本語の学習とソフトウェアシステムの構築のバランスを取っています。",
+            en: "I'm currently balancing between learning Japanese and Learning to Build AI agents .",
+            ja: "現在、日本語とAIエージェントの学習のバランスを取っています。",
         },
         whoDesc2: {
-            en: "I plan to offer services in software development, focusing on advanced 3D websites, portfolio experiences, end-to-end web development, and AI integrations.",
-            ja: "高度な3Dウェブサイト、ポートフォリオ体験、エンドツーエンドのウェブ開発、AI統合に焦点を当てたソフトウェア開発サービスを提供する予定です。",
+            en: "I work across frontend engineering, 3D web experiences, and AI — combining design, technology, and motion to create digital experiences that feel different.",
+            ja: "フロントエンドエンジニアリング、3Dウェブ体験、AIの分野に取り組み、デザイン、テクノロジー、モーションを組み合わせて、他とは違うデジタル体験を作っています。",
         },
         whoDesc3: {
-            en: "For now, explore some of my landing page code snippets.",
-            ja: "今のところ、私のランディングページのコードスニペットをご覧ください。",
+            en: "I'm open to collaborations and freelance work, whether it's a product, a side project, or anything in between. If you're looking to create something unique — let's chat.",
+            ja: "プロダクト、サイドプロジェクトを問わず、コラボレーションやフリーランスの仕事も歓迎です。ユニークなものを作りたいと思ったら、ぜひお話ししましょう。",
         },
         viewCodeSnippets: { en: "My Works", ja: "私の作品" },
 

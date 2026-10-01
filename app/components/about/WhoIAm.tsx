@@ -8,6 +8,7 @@ import Link from "next/link";
 import useIsMobile from "../../hooks/useIsMobile";
 import { useLang } from "../../i18n/LangContext";
 import { translations, t } from "../../i18n/translations";
+import SweepText from "../shared/SweepText";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -144,17 +145,38 @@ export default function WhoIAm() {
                     {t(translations.about.whoTitle, lang)}
                 </h2>
 
-                <p className="mt-4 text-gray-700">
-                    {t(translations.about.whoDesc1, lang)}
-                </p>
+                <SweepText
+                    text={t(translations.about.whoDesc1, lang)}
+                    className="mt-4 text-gray-700"
+                    initialColor="rgba(0, 0, 0, 0.35)"
+                    sweepColor="#5470EB"
+                    finalColor="#374151"
+                    stagger={0.08}
+                    sweepDuration={0.6}
+                    returnDuration={0.8}
+                />
 
-                <p className="mt-4 text-gray-700">
-                    {t(translations.about.whoDesc2, lang)}
-                </p>
+                <SweepText
+                    text={t(translations.about.whoDesc2, lang)}
+                    className="mt-4 text-gray-700"
+                    initialColor="rgba(0, 0, 0, 0.35)"
+                    sweepColor="#5470EB"
+                    finalColor="#374151"
+                    stagger={0.08}
+                    sweepDuration={0.6}
+                    returnDuration={0.8}
+                />
 
-                <p className="mt-4 text-gray-700">
-                    {t(translations.about.whoDesc3, lang)}
-                </p>
+                <SweepText
+                    text={t(translations.about.whoDesc3, lang)}
+                    className="mt-4 text-gray-700"
+                    initialColor="rgba(0, 0, 0, 0.35)"
+                    sweepColor="#5470EB"
+                    finalColor="#374151"
+                    stagger={0.08}
+                    sweepDuration={0.6}
+                    returnDuration={0.8}
+                />
 
                 <Link
                     href="/projects"

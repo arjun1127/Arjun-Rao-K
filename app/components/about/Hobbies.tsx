@@ -6,6 +6,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useLang } from "../../i18n/LangContext";
 import { translations, t } from "../../i18n/translations";
+import SweepText from "../shared/SweepText";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -121,7 +122,16 @@ export default function Hobbies() {
                             <div className="hobby-text">
                                 <span className="hobby-tag">{hobby.tag}</span>
                                 <h3 className="hobby-name">{hobby.title}</h3>
-                                <p className="hobby-desc">{hobby.description}</p>
+                                <SweepText
+                                    text={hobby.description}
+                                    className="hobby-desc"
+                                    initialColor="rgba(255,255,255,0.35)"
+                                    sweepColor="#5470EB"
+                                    finalColor="#ffffff"
+                                    stagger={0.08}
+                                    sweepDuration={0.6}
+                                    returnDuration={0.8}
+                                />
                             </div>
                         </div>
                     ))}
