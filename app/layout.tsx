@@ -1,18 +1,28 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Instrument_Serif, Manrope, IBM_Plex_Mono } from "next/font/google";
 import "@designcodeio/threeui/style.css";
 import "./components/shaders/threeui.css";
 import "./globals.css";
 import { LangProvider } from "./i18n/LangContext";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const instrumentSerif = Instrument_Serif({
+  variable: "--font-display",
   subsets: ["latin"],
+  weight: "400",
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const manrope = Manrope({
+  variable: "--font-body",
   subsets: ["latin"],
+  display: "swap",
+});
+
+const ibmPlexMono = IBM_Plex_Mono({
+  variable: "--font-mono",
+  subsets: ["latin"],
+  weight: ["300", "400", "500"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -61,7 +71,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className="intel-one-mono-300 antialiased"
+        className={`${instrumentSerif.variable} ${manrope.variable} ${ibmPlexMono.variable} antialiased`}
       >
         <meta name="google-site-verification" content="5b8FMYqjuYv6KfdBzeOECG5sVU7eLSYhnTV6uIIOft4" />
         <script

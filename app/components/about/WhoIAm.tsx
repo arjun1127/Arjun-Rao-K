@@ -141,7 +141,10 @@ export default function WhoIAm() {
     return (
         <div ref={sectionRef} className="who-section">
             <div ref={textRef} className="who-text">
-                <h2 className="text-3xl font-semibold text-black">
+                <h2
+                    className="text-3xl font-normal text-black"
+                    style={{ fontFamily: 'var(--font-display), "Instrument Serif", serif' }}
+                >
                     {t(translations.about.whoTitle, lang)}
                 </h2>
 
@@ -150,7 +153,7 @@ export default function WhoIAm() {
                     className="mt-4 text-gray-700"
                     initialColor="rgba(0, 0, 0, 0.35)"
                     sweepColor="#5470EB"
-                    finalColor="#374151"
+                    finalColor="#000000"
                     stagger={0.08}
                     sweepDuration={0.6}
                     returnDuration={0.8}
@@ -161,7 +164,7 @@ export default function WhoIAm() {
                     className="mt-4 text-gray-700"
                     initialColor="rgba(0, 0, 0, 0.35)"
                     sweepColor="#5470EB"
-                    finalColor="#374151"
+                    finalColor="#000000"
                     stagger={0.08}
                     sweepDuration={0.6}
                     returnDuration={0.8}
@@ -172,7 +175,7 @@ export default function WhoIAm() {
                     className="mt-4 text-gray-700"
                     initialColor="rgba(0, 0, 0, 0.35)"
                     sweepColor="#5470EB"
-                    finalColor="#374151"
+                    finalColor="#000000"
                     stagger={0.08}
                     sweepDuration={0.6}
                     returnDuration={0.8}

@@ -447,12 +447,13 @@ export default function AboutHero() {
                             className="
                                 select-none
                                 text-[clamp(4.5rem,14vw,14rem)]
-                                font-semibold
+                                font-normal
                                 leading-[0.8]
                                 tracking-[-0.06em]
                                 text-white
                                 will-change-transform
                             "
+                            style={{ fontFamily: 'var(--font-display), "Instrument Serif", serif' }}
                         >
                             ARJUN
                         </h1>
@@ -474,12 +475,13 @@ export default function AboutHero() {
                             className="
                                 select-none
                                 text-[clamp(4.5rem,14vw,14rem)]
-                                font-semibold
+                                font-normal
                                 leading-[0.8]
                                 tracking-[-0.06em]
                                 text-white
                                 will-change-transform
                             "
+                            style={{ fontFamily: 'var(--font-display), "Instrument Serif", serif' }}
                         >
                             RAO
                         </h1>
@@ -517,6 +519,7 @@ export default function AboutHero() {
                                 sm:text-base
                                 lg:text-lg
                             "
+                            style={{ fontFamily: 'var(--font-body), "Manrope", sans-serif' }}
                         >
                             AI / Full Stack Engineer
                         </p>
@@ -532,6 +535,7 @@ export default function AboutHero() {
                                 tracking-[0.25em]
                                 text-white/50
                             "
+                            style={{ fontFamily: 'var(--font-mono), "IBM Plex Mono", monospace' }}
                         >
                             <span>
                                 Scroll to explore

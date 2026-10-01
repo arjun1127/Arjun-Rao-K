@@ -52,9 +52,9 @@ export default function FutureVision() {
                         key={i}
                         text={item}
                         className="future-item"
-                        initialColor="rgba(255,255,255,0.35)"
+                        initialColor="rgba(0, 0, 0, 0.35)"
                         sweepColor="#5470EB"
-                        finalColor="rgba(255,255,255,0.9)"
+                        finalColor="#000000"
                         stagger={0.08}
                         sweepDuration={0.6}
                         returnDuration={0.8}
