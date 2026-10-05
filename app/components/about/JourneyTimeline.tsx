@@ -69,9 +69,9 @@ export default function JourneyTimeline() {
                         <SweepText
                             text={m.desc}
                             className="timeline-desc"
-                            initialColor="rgba(255,255,255,0.35)"
+                            initialColor="1b1b1bff"
                             sweepColor="#5470EB"
-                            finalColor="#ffffff"
+                            finalColor="#1b1b1bff"
                             stagger={0.08}
                             sweepDuration={0.6}
                             returnDuration={0.8}

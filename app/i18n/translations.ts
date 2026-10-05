@@ -79,12 +79,8 @@ export const translations = {
     /* ── About Page ── */
     about: {
         heroDesc: {
-            en: "ECE Graduate experienced in building AI based Web Applications and Machine Learning systems",
-            ja: "AIベースのWebアプリケーションと機械学習システムの構築に経験があるECE卒業生",
-        },
-        heroDesc2: {
-            en: "Currently exploring 3D web engineering, Blender, and Smart ways to improve one's Workflow and Systems.",
-            ja: "現在、3Dウェブエンジニアリング、Blender、ワークフローとシステムを改善するスマートな方法を探求中。",
+            en: "ECE Graduate, experienced in building AI based Web Applications and Agentic AI Systems",
+            ja: "AIベースのWebアプリケーションとエージェントAIシステムの構築に経験があるECE卒業生",
         },
         viewProjects: { en: "View Projects", ja: "プロジェクトを見る" },
         contact: { en: "Contact", ja: "連絡先" },

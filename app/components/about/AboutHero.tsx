@@ -606,7 +606,7 @@ export default function AboutHero() {
                                 color: "rgba(255, 255, 255, 0.3)",
                             }}
                         >
-                            {t(translations.about.heroDesc2, lang)
+                            {t(translations.about.heroDesc, lang)
                                 .split(" ")
                                 .map((word, idx) => (
                                     <span

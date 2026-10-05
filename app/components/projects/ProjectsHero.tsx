@@ -13,37 +13,21 @@ import { useLang } from "../../i18n/LangContext";
 import { translations, t } from "../../i18n/translations";
 
 import ErrorBoundary from "../shared/ErrorBoundary";
-import { useIframeButtonCustomization } from "../../hooks/useIframeButtonCustomization";
 import { projects } from "./projectsData";
 
-const ShaderButtons = lazy(() =>
-    import("@designcodeio/threeui").then((mod) => ({ default: mod.ShaderButtons }))
-);
-
-function ProjectShaderButton({ text, lang }: { text: string; lang: string }) {
-    const btnRef = useRef<HTMLDivElement>(null);
-    useIframeButtonCustomization({
-        containerRef: btnRef,
-        text,
-        lang,
-    });
-
-    const fallbackBtn = <div className="hero-primary-btn">{text}</div>;
-
+function ProjectShaderButton({ text }: { text: string }) {
     return (
-        <ErrorBoundary fallback={fallbackBtn}>
-            <div ref={btnRef} className="w-full h-full flex items-center justify-center">
-                <Suspense fallback={fallbackBtn}>
-                    <ShaderButtons
-                        variant="induction-button"
-                        mode="dark"
-                        hue={0}
-                        saturation={1.00}
-                        brightness={1.00}
-                    />
-                </Suspense>
+        <div className="btn">
+            <strong>{text}</strong>
+            <div id="container-stars">
+                <div id="stars" />
             </div>
-        </ErrorBoundary>
+
+            <div id="glow">
+                <div className="circle" />
+                <div className="circle" />
+            </div>
+        </div>
     );
 }
 
@@ -593,7 +577,7 @@ export default function Projects() {
                                                         rel="noopener noreferrer"
                                                         className="project-induction-wrap"
                                                     >
-                                                        <ProjectShaderButton text="VIEW PROJECT" lang={lang} />
+                                                        <ProjectShaderButton text="VIEW PROJECT" />
                                                         <span className="absolute inset-0 z-20" aria-label="View Project" />
                                                     </a>
 
