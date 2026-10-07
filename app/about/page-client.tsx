@@ -1,5 +1,6 @@
 "use client";
 
+import AetherFlowHero from "../components/about/landing-hero";
 import AboutHero from "../components/about/AboutHero";
 import WhoIAm from "../components/about/WhoIAm";
 import Hobbies from "../components/about/Hobbies";
@@ -12,6 +13,9 @@ export default function About() {
     return (
         <main className="w-full bg-[#030303]">
             <SiteNav />
+            {/* ── Section 0: Landing Hero (particle canvas) ── */}
+            <AetherFlowHero />
+
             {/* ── Section 1: Hero (dark) ── */}
             <AboutHero />
 

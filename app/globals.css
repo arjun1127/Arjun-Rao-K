@@ -571,6 +571,52 @@
 
 
   /* ════════════════════════════════════════
+   LANDING HERO (AETHERFLOW)
+   ════════════════════════════════════════ */
+
+  .landing-hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 16px;
+    border-radius: 999px;
+    background: rgba(84, 112, 235, 0.1);
+    border: 1px solid rgba(84, 112, 235, 0.2);
+    margin-bottom: 24px;
+    backdrop-filter: blur(8px);
+  }
+
+  .landing-hero-badge span {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.8);
+    font-family: var(--font-body), "Manrope", sans-serif;
+  }
+
+  .landing-hero-title {
+    font-size: clamp(3rem, 10vw, 8rem);
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    margin-bottom: 24px;
+    background: linear-gradient(to bottom, #ffffff, rgba(255, 255, 255, 0.55));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+    font-family: var(--font-display), "Instrument Serif", serif;
+  }
+
+  .landing-hero-subtitle {
+    max-width: 42rem;
+    margin: 0 auto 40px;
+    font-size: 1.125rem;
+    color: rgba(255, 255, 255, 0.45);
+    letter-spacing: 0.15em;
+    font-family: var(--font-mono), "IBM Plex Mono", monospace;
+  }
+
+
+  /* ════════════════════════════════════════
    ABOUT PAGE STYLES
    ════════════════════════════════════════ */
 
@@ -828,6 +874,39 @@
     padding: 10px;
     background: rgba(255, 255, 255, 0.03);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  /* IMAGE LAYER STACK (scroll-reveal) */
+
+  .hero-image-layer {
+    width: 100%;
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  /* First layer is relative so it sets the container height */
+  .hero-image-layer:first-child {
+    position: relative;
+  }
+
+  /* Subsequent layers stack on top */
+  .hero-image-layer:not(:first-child) {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+  }
+
+  /* Scan-line layer: clip-path is animated by GSAP */
+  .hero-image-layer--scanline {
+    will-change: clip-path, opacity;
+  }
+
+  /* Clear layer: opacity is animated by GSAP */
+  .hero-image-layer--clear {
+    will-change: opacity;
   }
 
   .hero-image {
@@ -838,6 +917,7 @@
     border-radius: 16px;
     display: block;
   }
+
 
   /* FLOATING CARD */
 
@@ -993,6 +1073,18 @@
       margin-top: 24px;
     }
 
+    .hero-image-layer:not(:first-child) {
+      top: 8px;
+      left: 8px;
+      right: 8px;
+      bottom: 8px;
+    }
+
+    .hero-image-layer,
+    .hero-image-layer:first-child {
+      border-radius: 14px;
+    }
+
     .hero-image {
       height: 200px;
       border-radius: 14px;
@@ -1056,6 +1148,18 @@
     .hero-image-frame {
       padding: 6px;
       border-radius: 16px;
+    }
+
+    .hero-image-layer:not(:first-child) {
+      top: 6px;
+      left: 6px;
+      right: 6px;
+      bottom: 6px;
+    }
+
+    .hero-image-layer,
+    .hero-image-layer:first-child {
+      border-radius: 12px;
     }
 
     .hero-image {

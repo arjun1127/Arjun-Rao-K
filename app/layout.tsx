@@ -4,6 +4,7 @@ import "@designcodeio/threeui/style.css";
 import "./components/shaders/threeui.css";
 import "./globals.css";
 import { LangProvider } from "./i18n/LangContext";
+import AnimatedFavicon from "./components/effects/AnimatedFavicon";
 
 const instrumentSerif = Instrument_Serif({
   variable: "--font-display",
@@ -26,7 +27,7 @@ const ibmPlexMono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || "https://arjunrao.dev"),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || "https://arjunraok.site"),
   title: {
     default: "ARJUN RAO | Creative Developer",
     template: "%s | ARJUN RAO",
@@ -35,6 +36,14 @@ export const metadata: Metadata = {
   keywords: ["Arjun Rao", "Arjun Rao K", "Arjun K Rao", "Vercel Arjun Rao", "Creative Developer", "Frontend Engineer", "Backend Developer", "Three.js", "React", "Next.js", "Portfolio"],
   authors: [{ name: "Arjun Rao" }],
   creator: "Arjun Rao",
+  icons: {
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/developer-favicon.png", type: "image/png" },
+    ],
+    shortcut: "/favicon.svg",
+    apple: "/developer-favicon.png",
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -78,6 +87,7 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+        <AnimatedFavicon />
         <LangProvider>
           {children}
         </LangProvider>
@@ -85,3 +95,4 @@ export default function RootLayout({
     </html>
   );
 }
+
